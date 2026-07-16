@@ -1,0 +1,101 @@
+<!-- ... existing code ... -->
+<style>
+  :root{
+    --bg: #F8F9FA;
+    --surface: #FFFFFF;
+    --lilac: #ECE6FC;
+    --line: #E2E8F0;
+    --ink: #0F172A;
+    --ink-muted: #475569;
+    --ink-faint: #94A3B8;
+    --brand-primary: #4F46E5;
+    --brand-secondary: #06B6D4;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif; line-height:1.65; }
+  h1,h2{ font-family:'Outfit',sans-serif; }
+  a{ color:var(--brand-primary); text-decoration:underline; text-underline-offset:2px; }
+  .wrap{ max-width:740px; margin:0 auto; padding:0 32px; }
+  header{ border-bottom:1px solid var(--line); background:rgba(255,255,255,0.9); backdrop-filter: blur(10px); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; height:78px; }
+  
+  .logo{ display:flex; align-items:center; gap:12px; font-weight:800; font-size:20px; letter-spacing:-0.03em; text-decoration:none;}
+  .logo-mark{ width:30px; height:30px; flex-shrink:0;}
+  .logo-text { background: linear-gradient(135deg, var(--ink) 0%, var(--brand-primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .logo small{ font-weight:600; font-size:12px; color:var(--brand-secondary); margin-left:2px; -webkit-text-fill-color: var(--brand-secondary);}
+
+  .back{ font-size:14px; font-weight:600; color:var(--ink-muted); text-decoration:none; }
+  .back:hover{ color:var(--brand-primary); }
+  main{ padding:64px 0 96px; }
+  .tag{ display:inline-block; font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:0.05em; color:var(--brand-primary); background:rgba(79, 70, 229, 0.1); padding:6px 14px; border-radius:100px; }
+  h1{ font-size:clamp(30px,4vw,42px); letter-spacing:-0.03em; margin:18px 0 8px; font-weight:800; }
+<!-- ... existing code ... -->
+  .card{ background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:16px 40px; margin-top:40px; box-shadow: 0 4px 20px rgba(0,0,0,0.03);}
+  footer{ padding:40px 0; border-top:1px solid var(--line); background:#fff;}
+  footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:14px; font-weight:500; color:var(--ink-faint); }
+  footer a{ color:var(--ink-faint); text-decoration: none;}
+  footer a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="12" fill="url(#paint0_linear_logo)"/>
+          <path d="M10 20C10 20 14 12 20 12C26 12 30 20 30 20C30 20 26 28 20 28C14 28 10 20 10 20Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="20" cy="20" r="3" fill="white"/>
+          <defs>
+            <linearGradient id="paint0_linear_logo" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#4F46E5"/>
+              <stop offset="1" stop-color="#06B6D4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
+      <span class="logo-text">PingSurf</span><small>.ai</small>
+    </a>
+    <a class="back" href="index.html">← Back to home</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <span class="tag">Legal</span>
+  <h1>Terms of Service</h1>
+  <p class="updated" id="last-updated">Last updated: January 1, 2026</p>
+
+  <p>These Terms of Service ("Terms") govern your use of PingSurf AI's publishing and auto-reply apps ("PingSurf," "the Service"). By connecting an account or using PingSurf, you agree to these Terms.</p>
+
+  <div class="card">
+  <h2>The service</h2>
+  <p>PingSurf offers two independent apps: PingSurf Publish, which posts content to the pages you connect, and PingSurf Reply, which monitors and automatically responds to comments and direct messages according to rules you set. You may use either app on its own, or both together.</p>
+
+  <h2>Your account</h2>
+<!-- ... existing code ... -->
+  <h2>Connected platforms</h2>
+  <p>When you connect a third-party account, such as through "Continue with Facebook," you authorize PingSurf to publish content and send replies on your behalf, within the permissions you grant and limited to the apps you've chosen to use. Your use of connected platforms remains subject to that platform's own terms.</p>
+
+  <h2>Acceptable use</h2>
+  <p>You agree not to use PingSurf to publish unlawful content, send spam, impersonate others, or automate replies in a way that violates the policies of a connected platform.</p>
+
+  <h2>Availability</h2>
+<!-- ... existing code ... -->
+  <h2>Termination</h2>
+  <p>You may disconnect either app independently and stop using PingSurf at any time. We may suspend or terminate access for accounts that violate these Terms.</p>
+
+  <h2>Changes to these terms</h2>
+<!-- ... existing code ... -->
+  <h2>Contact</h2>
+  <p>Questions about these Terms can be sent to legal@pingsurf.com.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 PingSurf AI. All rights reserved.</span>
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+</footer>
+<!-- ... existing code ... -->
