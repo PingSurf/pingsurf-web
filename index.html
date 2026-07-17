@@ -87,11 +87,38 @@
   }
   .nav{ display:flex; align-items:center; justify-content:space-between; height:80px; }
   
-  .logo{ display:flex; align-items:center; gap:12px; font-weight:800; font-size:24px; letter-spacing:-0.03em; }
-  .logo-mark{ width:36px; height:36px; flex-shrink:0; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
-  .logo:hover .logo-mark { transform: rotate(-10deg) scale(1.1); }
-  .logo-text { background: linear-gradient(135deg, var(--ink) 0%, var(--brand-primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .logo small{ font-weight:600; font-size:14px; color:var(--brand-secondary); margin-left:2px; -webkit-text-fill-color: var(--brand-secondary);}
+  .logo { 
+    display: flex; 
+    align-items: center; 
+    gap: 6px; 
+    font-weight: 800; 
+    font-size: 24px; 
+    letter-spacing: -0.03em; 
+  }
+  
+  .logo-mark { 
+    width: 44px; 
+    height: 44px; 
+    flex-shrink: 0; 
+    object-fit: contain; 
+    mix-blend-mode: multiply; 
+    position: relative; /* Allows for manual positional adjustments */
+    top: -2px; /* Lifts the icon up slightly for perfect optical alignment */
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
+  }
+  
+  .logo:hover .logo-mark { 
+    transform: rotate(-10deg) scale(1.1); 
+  }
+  
+  .logo-text { 
+    background: linear-gradient(135deg, var(--ink) 0%, var(--brand-primary) 100%); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    line-height: 1.2; 
+    padding-bottom: 8px; /* Gives the tail of the 'g' enough room to render */
+    margin-bottom: -8px; /* Offsets the padding so the text stays perfectly centered with the icon */
+  }
 
   .nav-links{ display:flex; gap:36px; font-size:15px; font-weight:600; color:var(--ink-muted); }
   .nav-links a{ position: relative; transition: color 0.2s ease; }
@@ -498,20 +525,7 @@
 <header>
   <div class="wrap nav reveal fade-in">
     <a href="#" class="logo">
-      <span class="logo-mark" aria-hidden="true">
-        <!-- New Custom Wave/Pulse Logo -->
-        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="12" fill="url(#paint0_linear)"/>
-          <path d="M10 20C10 20 14 12 20 12C26 12 30 20 30 20C30 20 26 28 20 28C14 28 10 20 10 20Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="20" cy="20" r="3" fill="white"/>
-          <defs>
-            <linearGradient id="paint0_linear" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#4F46E5"/>
-              <stop offset="1" stop-color="#06B6D4"/>
-            </linearGradient>
-          </defs>
-        </svg>
-      </span>
+      <img class="logo-mark" src="PingSurf-Logo.png" alt="PingSurf logo" />
       <span class="logo-text">PingSurf</span>
     </a>
     <nav class="nav-links">
@@ -680,19 +694,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <div class="logo">
-          <span class="logo-mark" aria-hidden="true">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="40" height="40" rx="12" fill="url(#paint0_linear_footer)"/>
-              <path d="M10 20C10 20 14 12 20 12C26 12 30 20 30 20C30 20 26 28 20 28C14 28 10 20 10 20Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="20" cy="20" r="3" fill="white"/>
-              <defs>
-                <linearGradient id="paint0_linear_footer" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#4F46E5"/>
-                  <stop offset="1" stop-color="#06B6D4"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </span>
+          <img class="logo-mark" src="PingSurf-Logo.png" alt="PingSurf logo" />
           <span class="logo-text">PingSurf</span>
         </div>
         <p>Smart publishing and instant auto-replies for modern businesses.</p>
@@ -712,17 +714,19 @@
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms of Service</a>
+          <a href="privacy_policy.html">Privacy Policy</a>
+          <a href="terms_of_service.html">Terms of Service</a>
+          <a href="data_deletion.html">Data Deletion</a>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span>© 2026 PingSurf AI. All rights reserved.</span>
+      <span>© 2026 PingSurf. All rights reserved.</span>
       <div class="legal-links">
         <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Service</a>
+        <a href="terms_of_service.html">Terms of Service</a>
+        <a href="data_deletion.html">Data Deletion</a>
       </div>
     </div>
   </div>
