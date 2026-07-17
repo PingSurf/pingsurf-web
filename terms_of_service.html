@@ -1,9 +1,15 @@
-<!-- ... existing code ... -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — PingSurf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg: #F8F9FA;
     --surface: #FFFFFF;
-    --lilac: #ECE6FC;
     --line: #E2E8F0;
     --ink: #0F172A;
     --ink-muted: #475569;
@@ -29,7 +35,12 @@
   main{ padding:64px 0 96px; }
   .tag{ display:inline-block; font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:0.05em; color:var(--brand-primary); background:rgba(79, 70, 229, 0.1); padding:6px 14px; border-radius:100px; }
   h1{ font-size:clamp(30px,4vw,42px); letter-spacing:-0.03em; margin:18px 0 8px; font-weight:800; }
-<!-- ... existing code ... -->
+  .updated{ font-size:14px; color:var(--ink-faint); margin-bottom:40px; }
+  h2{ font-size:20px; margin:36px 0 12px; letter-spacing:-0.01em; font-weight:700; }
+  p, li{ color:var(--ink-muted); font-size:15.5px; }
+  ul{ margin:12px 0 0 20px; }
+  li{ margin-bottom:8px; }
+  p{ margin-bottom:14px; }
   .card{ background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:16px 40px; margin-top:40px; box-shadow: 0 4px 20px rgba(0,0,0,0.03);}
   footer{ padding:40px 0; border-top:1px solid var(--line); background:#fff;}
   footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:14px; font-weight:500; color:var(--ink-faint); }
@@ -51,11 +62,11 @@
             <linearGradient id="paint0_linear_logo" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
               <stop stop-color="#4F46E5"/>
               <stop offset="1" stop-color="#06B6D4"/>
-            </linearGradient>
+            </linear.Gradient>
           </defs>
         </svg>
       </span>
-      <span class="logo-text">PingSurf</span><small>.ai</small>
+      <span class="logo-text">PingSurf</span>
     </a>
     <a class="back" href="index.html">← Back to home</a>
   </div>
@@ -66,27 +77,33 @@
   <h1>Terms of Service</h1>
   <p class="updated" id="last-updated">Last updated: January 1, 2026</p>
 
-  <p>These Terms of Service ("Terms") govern your use of PingSurf AI's publishing and auto-reply apps ("PingSurf," "the Service"). By connecting an account or using PingSurf, you agree to these Terms.</p>
+  <p>These Terms of Service ("Terms") govern your use of PingSurf's publishing and auto-reply apps ("PingSurf," "the Service"). By connecting an account or using PingSurf, you agree to these Terms.</p>
 
   <div class="card">
   <h2>The service</h2>
   <p>PingSurf offers two independent apps: PingSurf Publish, which posts content to the pages you connect, and PingSurf Reply, which monitors and automatically responds to comments and direct messages according to rules you set. You may use either app on its own, or both together.</p>
 
   <h2>Your account</h2>
-<!-- ... existing code ... -->
+  <p>You're responsible for the accuracy of the content you send us, the rules you set for automatic replies, and for keeping your login secure. You must have the right to post to and manage any page you connect.</p>
+
   <h2>Connected platforms</h2>
   <p>When you connect a third-party account, such as through "Continue with Facebook," you authorize PingSurf to publish content and send replies on your behalf, within the permissions you grant and limited to the apps you've chosen to use. Your use of connected platforms remains subject to that platform's own terms.</p>
 
   <h2>Acceptable use</h2>
   <p>You agree not to use PingSurf to publish unlawful content, send spam, impersonate others, or automate replies in a way that violates the policies of a connected platform.</p>
 
+  <h2>Automated responses & Liability</h2>
+  <p>PingSurf Respond utilizes automated systems and artificial intelligence to generate replies. While we strive for high quality and accuracy, AI can occasionally produce unexpected or inaccurate results. You acknowledge that you are solely responsible for the actions and outputs of your connected accounts. PingSurf is provided on an "as is" basis, and we are not liable for any direct, indirect, or reputational damages, lost sales, or customer disputes arising from the use of our automated publishing or reply tools. We recommend regularly monitoring your automated conversation logs.</p>
+
   <h2>Availability</h2>
-<!-- ... existing code ... -->
+  <p>We aim to keep publishing and reply monitoring running continuously, but scheduled maintenance, platform outages, or issues outside our control may affect availability from time to time.</p>
+
   <h2>Termination</h2>
   <p>You may disconnect either app independently and stop using PingSurf at any time. We may suspend or terminate access for accounts that violate these Terms.</p>
 
   <h2>Changes to these terms</h2>
-<!-- ... existing code ... -->
+  <p>We may update these Terms as the Service evolves. Continued use after an update means you accept the revised Terms.</p>
+
   <h2>Contact</h2>
   <p>Questions about these Terms can be sent to legal@pingsurf.com.</p>
   </div>
@@ -94,8 +111,20 @@
 
 <footer>
   <div class="wrap">
-    <span>© 2026 PingSurf AI. All rights reserved.</span>
+    <span>© 2026 PingSurf. All rights reserved.</span>
     <a href="privacy.html">Privacy Policy</a>
   </div>
 </footer>
-<!-- ... existing code ... -->
+<script>
+  fetch('https://api.github.com/repos/PingSurf/pingsurf-web/commits?path=terms.html&page=1&per_page=1')
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.length > 0) {
+        const date = new Date(data[0].commit.committer.date);
+        document.getElementById('last-updated').innerText = 'Last updated: ' + date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      }
+    })
+    .catch(e => console.log('Could not fetch update date', e));
+</script>
+</body>
+</html>
