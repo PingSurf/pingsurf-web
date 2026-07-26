@@ -856,12 +856,40 @@
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     
+    // --- NEW: AUTO-DETECT BACKEND URL ---
+    let BACKEND_URL = "";
+    const hostname = window.location.hostname;
+    // If opening file locally (localhost, 127.0.0.1, or file:///)
+    if (hostname === "localhost" || hostname === "127.0.0.1" || hostname === "") {
+        BACKEND_URL = "https://ranking-mean-arrivals-par.trycloudflare.com"; 
+    } else {
+        // If hosted on GitHub Pages or custom domain
+        BACKEND_URL = "https://app.pingsurf.com";
+    }
+    // --- NEW: LOGIN & CLIENT ID MANAGER ---
+    const urlParams = new URLSearchParams(window.location.search);
+    let clientId = urlParams.get('client_id') || localStorage.getItem('pingsurf_client_id');
+
+    if (clientId) {
+        // Save to browser so they stay logged in tomorrow
+        localStorage.setItem('pingsurf_client_id', clientId);
+        
+        // Update the top navigation button
+        const navLoginBtn = document.querySelector('.nav-cta');
+        if(navLoginBtn) {
+            navLoginBtn.innerText = "Dashboard";
+            // Point back to the setup page
+            navLoginBtn.href = `${BACKEND_URL}/setup.html?client_id=${clientId}`;
+        }
+    }
+    // --- END LOGIN MANAGER ---
     // 1. Scroll Progress Bar
     window.addEventListener('scroll', () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
         document.getElementById("progressBar").style.width = scrolled + "%";
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
     });
 
     // 2. Premium Parallax
@@ -922,6 +950,8 @@
     const toggle = document.getElementById('billing-toggle');
     const prices = document.querySelectorAll('.price-val');
     const periods = document.querySelectorAll('.price-period');
+    const baseUrl = `${BACKEND_URL}/api/billing/checkout`;
+    const loginUrl = `${BACKEND_URL}/auth/login`;
     
     // FETCH THE BUTTONS BY ID
     const btnStarter = document.getElementById('btn-starter');
@@ -931,20 +961,20 @@
     // Default prices (Monthly)
     const monthlyPrices = ['₹399', '₹799', '₹1199'];
 
-    const monthlyLinks = [
-        'https://rzp.io/rzp/qV9ZYbs',  // Your Starter Monthly Link
-        'https://rzp.io/rzp/NmKFO9H', // Your Pro Monthly Link
-        'https://rzp.io/rzp/TibqXy4'  // Your Tsunami Monthly Link
-    ];    
-
     // Annual prices
     const annualPrices = ['₹3990', '₹7990', '₹11990'];
 
-    const annualLinks = [
-        'https://rzp.io/rzp/IxytixC', // 1. Starter Annual Link goes here!
-        'https://rzp.io/rzp/ewww1Cp', // 2. Pro Surfer Annual Link goes here!
-        'https://rzp.io/rzp/eFrbT40'  // 3. Tsunami Annual Link goes here!
-    ];
+    const monthlyLinks = clientId ? [
+        `${baseUrl}?client_id=${clientId}&plan=starter_monthly`,
+        `${baseUrl}?client_id=${clientId}&plan=pro_monthly`,
+        `${baseUrl}?client_id=${clientId}&plan=tsunami_monthly`
+    ] : [ loginUrl, loginUrl, loginUrl ]; // Force login if stranger    
+
+    const annualLinks = clientId ? [
+        `${baseUrl}?client_id=${clientId}&plan=starter_annual`,
+        `${baseUrl}?client_id=${clientId}&plan=pro_annual`,
+        `${baseUrl}?client_id=${clientId}&plan=tsunami_annual`
+    ] : [ loginUrl, loginUrl, loginUrl ]; // Force login if stranger
 
     toggle.addEventListener('change', (e) => {
         if(e.target.checked) {

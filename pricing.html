@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PingSurf | Pricing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(to right, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Logo Styles matching index.html */
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+            font-weight: 800; 
+            font-size: 24px; 
+            letter-spacing: -0.03em; 
+            text-decoration: none;
+        }
+        .logo-mark { 
+            width: 44px; 
+            height: 44px; 
+            flex-shrink: 0; 
+            object-fit: contain; 
+            mix-blend-mode: multiply; 
+            position: relative;
+            top: -2px; 
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
+        }
+        .logo:hover .logo-mark { 
+            transform: rotate(-10deg) scale(1.1); 
+        }
+        .logo-text { 
+            background: linear-gradient(135deg, #0F172A 0%, #4F46E5 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            line-height: 1.2; 
+            padding-bottom: 8px; 
+            margin-bottom: -8px; 
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased">
+
+<nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+            
+            <!-- NEW LOGO -->
+            <a href="index.html" class="logo">
+                <img class="logo-mark" src="PingSurf-Logo.png" alt="PingSurf logo" />
+                <span class="logo-text">PingSurf</span>
+            </a>
+
+            <div class="flex items-center gap-6 text-sm font-medium">
+                <a href="index.html" class="text-gray-500 hover:text-gray-900 transition">Home</a>
+                <a href="pricing.html" class="text-blue-600">Pricing</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="py-16 lg:py-24 overflow-hidden relative">
+    
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none -z-10">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-10 text-sm">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 text-blue-800 font-medium">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                Refer a friend, get 1 month FREE (No limit on referrals!)
+            </span>
+        </div>
+
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <h3 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
+                Choose the perfect wave for your business. <span class="gradient-text">Cancel anytime.</span>
+            </h3>
+            <p class="text-xl text-gray-600">No lock-in contracts. Start your free trial today.</p>
+        </div>
+
+        <div class="max-w-4xl mx-auto mb-10">
+            <div class="bg-gradient-to-r from-amber-100 to-orange-100 border border-amber-200 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="bg-amber-500 text-white rounded-full p-2 flex-shrink-0">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-lg">🎁 First 50 Paid Subscribers Bonus</h4>
+                        <p class="text-amber-800 text-sm font-medium">Upgrade to any paid plan today and get Google Business Profile integration for LIFE.</p>
+                    </div>
+                </div>
+                <div class="text-center sm:text-right">
+                    <span class="inline-block bg-white text-amber-700 font-bold px-3 py-1 rounded-full text-sm shadow-sm border border-amber-200">
+                        Only 14 spots left!
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center items-center gap-4 mb-16">
+            <span class="text-gray-900 font-bold" id="label-monthly">Monthly</span>
+            
+            <label for="billing-toggle" class="flex items-center cursor-pointer relative">
+                <input type="checkbox" id="billing-toggle" class="sr-only peer">
+                <div class="w-14 h-8 bg-gray-300 rounded-full peer-checked:bg-blue-600 transition-colors duration-300"></div>
+                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition-transform duration-300 peer-checked:translate-x-6 shadow-sm"></div>
+            </label>
+
+            <span class="text-gray-600 font-medium" id="label-annual">Annually <span class="text-green-500 text-sm font-bold ml-1">(2 Months Free)</span></span>
+        </div>
+
+        <div class="grid lg:grid-cols-2 xl:grid-cols-4 gap-6 max-w-7xl mx-auto items-stretch">
+            
+            <!-- Tier 1: Free Trial -->
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 flex flex-col hover:shadow-lg transition-shadow duration-300">
+                <h4 class="text-2xl font-bold text-gray-900 mb-2">Free Trial</h4>
+                <p class="text-gray-500 mb-6 text-sm">Test the waters. No credit card required.</p>
+                <div class="mb-8">
+                    <span class="text-5xl font-extrabold text-gray-900">₹0</span>
+                    <span class="text-gray-500 font-medium">/ 30 days</span>
+                </div>
+                
+                <ul class="space-y-4 mb-8 flex-grow text-sm">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700"><strong>30</strong> Automated Posts & Stories</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700"><strong>100</strong> AI Replies/mo</span>
+                    </li>
+                    <li class="flex items-start opacity-50">
+                        <svg class="w-5 h-5 text-red-400 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        <span class="text-gray-500">No Google Business Profile</span>
+                    </li>
+                </ul>
+                
+                <a href="#" id="btn-trial" class="block w-full py-4 px-6 text-center rounded-xl text-blue-600 font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors duration-200 mt-auto">
+                    Start Free Trial
+                </a>
+            </div>
+
+            <!-- Tier 2: Starter -->
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 flex flex-col hover:shadow-lg transition-shadow duration-300">
+                <h4 class="text-2xl font-bold text-gray-900 mb-2">Starter Wave</h4>
+                <p class="text-gray-500 mb-6 text-sm">Perfect for businesses that just need to post consistently.</p>
+                <div class="mb-8">
+                    <span class="text-5xl font-extrabold text-gray-900 price-val">₹399</span>
+                    <span class="text-gray-500 font-medium price-period">/month</span>
+                </div>
+                
+                <ul class="space-y-4 mb-8 flex-grow text-sm">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700"><strong>Unlimited</strong> Posts & Stories</span>
+                    </li>
+                    <li class="flex items-start opacity-50">
+                        <svg class="w-5 h-5 text-red-400 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        <span class="text-gray-500">No AI Comment/DM Replies</span>
+                    </li>
+                </ul>
+                
+                <a href="#" id="btn-starter" class="block w-full py-4 px-6 text-center rounded-xl text-gray-900 font-semibold border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-colors duration-200 mt-auto">
+                    Subscribe Now
+                </a>
+            </div>
+
+            <!-- Tier 3: Pro -->
+            <div class="bg-gray-900 rounded-3xl shadow-2xl border border-gray-800 p-8 flex flex-col xl:-translate-y-4 relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-gradient-to-r from-blue-500 to-cyan-400 text-white text-xs font-bold px-4 py-1 rounded-bl-xl uppercase tracking-wider">
+                    Most Popular
+                </div>
+                
+                <h4 class="text-2xl font-bold text-white mb-2">Pro Surfer</h4>
+                <p class="text-gray-400 mb-6 text-sm">Your 24/7 AI Marketing & Customer Service team.</p>
+                <div class="mb-8">
+                    <span class="text-5xl font-extrabold text-white price-val">₹799</span>
+                    <span class="text-gray-400 font-medium price-period">/month</span>
+                </div>
+                
+                <ul class="space-y-4 mb-8 flex-grow text-sm">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-cyan-400 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-300"><strong>Unlimited</strong> Posts & Stories</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-cyan-400 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-300"><strong>1,000 AI Replies/mo</strong> to DMs & Comments</span>
+                    </li>
+                </ul>
+                
+                <a href="#" id="btn-pro" class="block w-full py-4 px-6 text-center rounded-xl text-white font-bold bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 shadow-lg hover:shadow-cyan-500/25 transition-all duration-200 mt-auto">
+                    Subscribe Now
+                </a>
+            </div>
+
+            <!-- Tier 4: Elite -->
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 flex flex-col hover:shadow-lg transition-shadow duration-300">
+                <h4 class="text-2xl font-bold text-gray-900 mb-2">Tsunami</h4>
+                <p class="text-gray-500 mb-6 text-sm">For high-volume businesses and viral creators.</p>
+                <div class="mb-8">
+                    <span class="text-5xl font-extrabold text-gray-900 price-val">₹1199</span>
+                    <span class="text-gray-500 font-medium price-period">/month</span>
+                </div>
+                
+                <ul class="space-y-4 mb-8 flex-grow text-sm">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-purple-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700"><strong>Unlimited</strong> Posts & Stories</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-purple-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700"><strong>Unlimited AI Replies</strong> to DMs & Comments</span>
+                    </li>
+                </ul>
+                
+                <a href="#" id="btn-tsunami" class="block w-full py-4 px-6 text-center rounded-xl text-gray-900 font-semibold border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-colors duration-200 mt-auto">
+                    Subscribe Now
+                </a>
+            </div>
+
+        </div>
+        
+        <div class="mt-16 text-center">
+            <div class="flex items-center justify-center gap-2 text-gray-500 mb-2">
+                <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"></path></svg>
+                <span class="font-medium text-sm">Secure payments powered by Razorpay</span>
+            </div>
+            <p class="text-sm text-gray-500">Need a custom enterprise setup? <a href="#" class="text-blue-600 hover:underline font-medium">Contact us</a>.</p>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        // --- AUTO-DETECT BACKEND URL ---
+        let BACKEND_URL = "";
+        const hostname = window.location.hostname;
+        
+        if (hostname === "localhost" || hostname === "127.0.0.1" || hostname === "") {
+            BACKEND_URL = "https://likelihood-dark-advisory-avi.trycloudflare.com"; 
+        } else {
+            BACKEND_URL = "https://your-azure-app-url.azurecontainerapps.io"; // TODO: Update later
+        }
+
+        // --- CLIENT ID MANAGER ---
+        const urlParams = new URLSearchParams(window.location.search);
+        let clientId = urlParams.get('client_id') || localStorage.getItem('pingsurf_client_id');
+        
+        if (clientId) {
+            localStorage.setItem('pingsurf_client_id', clientId);
+        }
+
+        const toggle = document.getElementById('billing-toggle');
+        const prices = document.querySelectorAll('.price-val');
+        const periods = document.querySelectorAll('.price-period');
+        
+        // Buttons
+        const btnTrial = document.getElementById('btn-trial');
+        const btnStarter = document.getElementById('btn-starter');
+        const btnPro = document.getElementById('btn-pro');
+        const btnTsunami = document.getElementById('btn-tsunami');
+
+        // Base URLs
+        const checkoutEndpoint = `${BACKEND_URL}/api/billing/checkout`;
+        const loginEndpoint = `${BACKEND_URL}/auth/login`;
+
+        // Free Trial Button Logic
+        if (btnTrial) {
+            btnTrial.href = clientId ? `${BACKEND_URL}/setup.html?client_id=${clientId}` : loginEndpoint;
+            if (clientId) btnTrial.innerText = "Go to Dashboard";
+        }
+
+        // Monthly Prices
+        const monthlyPrices = ['₹399', '₹799', '₹1199'];
+        const monthlyLinks = clientId ? [
+            `${checkoutEndpoint}?client_id=${clientId}&plan=starter_monthly`,
+            `${checkoutEndpoint}?client_id=${clientId}&plan=pro_monthly`,
+            `${checkoutEndpoint}?client_id=${clientId}&plan=tsunami_monthly`
+        ] : [ loginEndpoint, loginEndpoint, loginEndpoint ];
+
+        // Annual Prices (2 Months Free)
+        const annualPrices = ['₹3990', '₹7990', '₹11990'];
+        const annualLinks = clientId ? [
+            `${checkoutEndpoint}?client_id=${clientId}&plan=starter_annual`,
+            `${checkoutEndpoint}?client_id=${clientId}&plan=pro_annual`,
+            `${checkoutEndpoint}?client_id=${clientId}&plan=tsunami_annual`
+        ] : [ loginEndpoint, loginEndpoint, loginEndpoint ];
+
+        toggle.addEventListener('change', (e) => {
+            if(e.target.checked) {
+                // Annual
+                prices.forEach((el, index) => {
+                    el.innerText = annualPrices[index];
+                    el.classList.add('opacity-50');
+                    setTimeout(() => el.classList.remove('opacity-50'), 150);
+                });
+                periods.forEach(p => p.innerText = '/year');
+                document.getElementById('label-annual').classList.add('text-gray-900');
+                document.getElementById('label-annual').classList.remove('text-gray-600');
+                document.getElementById('label-monthly').classList.add('text-gray-600');
+                document.getElementById('label-monthly').classList.remove('text-gray-900');
+
+                if(btnStarter) btnStarter.href = annualLinks[0];
+                if(btnPro) btnPro.href = annualLinks[1];
+                if(btnTsunami) btnTsunami.href = annualLinks[2];
+            } else {
+                // Monthly
+                prices.forEach((el, index) => {
+                    el.innerText = monthlyPrices[index];
+                    el.classList.add('opacity-50');
+                    setTimeout(() => el.classList.remove('opacity-50'), 150);
+                });
+                periods.forEach(p => p.innerText = '/month');
+                document.getElementById('label-monthly').classList.add('text-gray-900');
+                document.getElementById('label-monthly').classList.remove('text-gray-600');
+                document.getElementById('label-annual').classList.add('text-gray-600');
+                document.getElementById('label-annual').classList.remove('text-gray-900');
+
+                if(btnStarter) btnStarter.href = monthlyLinks[0];
+                if(btnPro) btnPro.href = monthlyLinks[1];
+                if(btnTsunami) btnTsunami.href = monthlyLinks[2];
+            }
+        });
+
+        // Initialize state on load
+        window.addEventListener('pageshow', () => {
+            toggle.dispatchEvent(new Event('change'));
+        });
+    });
+</script>
+
+</body>
+</html>
