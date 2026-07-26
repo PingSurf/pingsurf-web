@@ -14,7 +14,7 @@
             -webkit-text-fill-color: transparent;
         }
         
-        /* Logo Styles matching index.html */
+        /* Logo Styles */
         .logo { 
             display: flex; 
             align-items: center; 
@@ -53,7 +53,6 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
             
-            <!-- NEW LOGO -->
             <a href="index.html" class="logo">
                 <img class="logo-mark" src="PingSurf-Logo.png" alt="PingSurf logo" />
                 <span class="logo-text">PingSurf</span>
@@ -61,7 +60,8 @@
 
             <div class="flex items-center gap-6 text-sm font-medium">
                 <a href="index.html" class="text-gray-500 hover:text-gray-900 transition">Home</a>
-                <a href="pricing.html" class="text-blue-600">Pricing</a>
+                <!-- We will use JS to change this to "Dashboard" if they are logged in -->
+                <a href="#" id="nav-login-btn" class="text-blue-600">Login</a>
             </div>
         </div>
     </div>
@@ -172,9 +172,9 @@
                     </li>
                 </ul>
                 
-                <a href="#" id="btn-starter" class="block w-full py-4 px-6 text-center rounded-xl text-gray-900 font-semibold border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-colors duration-200 mt-auto">
+                <button id="btn-starter" class="block w-full py-4 px-6 text-center rounded-xl text-gray-900 font-semibold border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-colors duration-200 mt-auto">
                     Subscribe Now
-                </a>
+                </button>
             </div>
 
             <!-- Tier 3: Pro -->
@@ -201,9 +201,9 @@
                     </li>
                 </ul>
                 
-                <a href="#" id="btn-pro" class="block w-full py-4 px-6 text-center rounded-xl text-white font-bold bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 shadow-lg hover:shadow-cyan-500/25 transition-all duration-200 mt-auto">
+                <button id="btn-pro" class="block w-full py-4 px-6 text-center rounded-xl text-white font-bold bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 shadow-lg hover:shadow-cyan-500/25 transition-all duration-200 mt-auto">
                     Subscribe Now
-                </a>
+                </button>
             </div>
 
             <!-- Tier 4: Elite -->
@@ -226,9 +226,9 @@
                     </li>
                 </ul>
                 
-                <a href="#" id="btn-tsunami" class="block w-full py-4 px-6 text-center rounded-xl text-gray-900 font-semibold border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-colors duration-200 mt-auto">
+                <button id="btn-tsunami" class="block w-full py-4 px-6 text-center rounded-xl text-gray-900 font-semibold border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-colors duration-200 mt-auto">
                     Subscribe Now
-                </a>
+                </button>
             </div>
 
         </div>
@@ -244,6 +244,9 @@
     </div>
 </section>
 
+<!-- 🛑 RAZORPAY SCRIPT HERE 🛑 -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
@@ -252,17 +255,35 @@
         const hostname = window.location.hostname;
         
         if (hostname === "localhost" || hostname === "127.0.0.1" || hostname === "") {
-            BACKEND_URL = "https://likelihood-dark-advisory-avi.trycloudflare.com"; 
+            BACKEND_URL = "https://clone-mid-consent-academics.trycloudflare.com"; 
         } else {
-            BACKEND_URL = "https://your-azure-app-url.azurecontainerapps.io"; // TODO: Update later
+            BACKEND_URL = "https://app.pingsurf.com"; // TODO: Update to real Azure URL
         }
+
+        // 🛑 PASTE YOUR PUBLIC RAZORPAY TEST KEY HERE 🛑
+        const RAZORPAY_PUBLIC_KEY = "rzp_test_TI64rHDN563AIL";
 
         // --- CLIENT ID MANAGER ---
         const urlParams = new URLSearchParams(window.location.search);
         let clientId = urlParams.get('client_id') || localStorage.getItem('pingsurf_client_id');
         
+        const navLoginBtn = document.getElementById('nav-login-btn');
+        const btnTrial = document.getElementById('btn-trial');
+        const loginEndpoint = `${BACKEND_URL}/auth/login`;
+
         if (clientId) {
             localStorage.setItem('pingsurf_client_id', clientId);
+            if (navLoginBtn) {
+                navLoginBtn.innerText = "Dashboard";
+                navLoginBtn.href = `${BACKEND_URL}/setup.html?client_id=${clientId}`;
+            }
+            if (btnTrial) {
+                btnTrial.innerText = "Go to Dashboard";
+                btnTrial.href = `${BACKEND_URL}/setup.html?client_id=${clientId}`;
+            }
+        } else {
+            if (navLoginBtn) navLoginBtn.href = loginEndpoint;
+            if (btnTrial) btnTrial.href = loginEndpoint;
         }
 
         const toggle = document.getElementById('billing-toggle');
@@ -270,39 +291,19 @@
         const periods = document.querySelectorAll('.price-period');
         
         // Buttons
-        const btnTrial = document.getElementById('btn-trial');
         const btnStarter = document.getElementById('btn-starter');
         const btnPro = document.getElementById('btn-pro');
         const btnTsunami = document.getElementById('btn-tsunami');
 
-        // Base URLs
-        const checkoutEndpoint = `${BACKEND_URL}/api/billing/checkout`;
-        const loginEndpoint = `${BACKEND_URL}/auth/login`;
-
-        // Free Trial Button Logic
-        if (btnTrial) {
-            btnTrial.href = clientId ? `${BACKEND_URL}/setup.html?client_id=${clientId}` : loginEndpoint;
-            if (clientId) btnTrial.innerText = "Go to Dashboard";
-        }
-
         // Monthly Prices
         const monthlyPrices = ['₹399', '₹799', '₹1199'];
-        const monthlyLinks = clientId ? [
-            `${checkoutEndpoint}?client_id=${clientId}&plan=starter_monthly`,
-            `${checkoutEndpoint}?client_id=${clientId}&plan=pro_monthly`,
-            `${checkoutEndpoint}?client_id=${clientId}&plan=tsunami_monthly`
-        ] : [ loginEndpoint, loginEndpoint, loginEndpoint ];
-
         // Annual Prices (2 Months Free)
         const annualPrices = ['₹3990', '₹7990', '₹11990'];
-        const annualLinks = clientId ? [
-            `${checkoutEndpoint}?client_id=${clientId}&plan=starter_annual`,
-            `${checkoutEndpoint}?client_id=${clientId}&plan=pro_annual`,
-            `${checkoutEndpoint}?client_id=${clientId}&plan=tsunami_annual`
-        ] : [ loginEndpoint, loginEndpoint, loginEndpoint ];
+        let isAnnual = false;
 
         toggle.addEventListener('change', (e) => {
-            if(e.target.checked) {
+            isAnnual = e.target.checked;
+            if(isAnnual) {
                 // Annual
                 prices.forEach((el, index) => {
                     el.innerText = annualPrices[index];
@@ -314,10 +315,6 @@
                 document.getElementById('label-annual').classList.remove('text-gray-600');
                 document.getElementById('label-monthly').classList.add('text-gray-600');
                 document.getElementById('label-monthly').classList.remove('text-gray-900');
-
-                if(btnStarter) btnStarter.href = annualLinks[0];
-                if(btnPro) btnPro.href = annualLinks[1];
-                if(btnTsunami) btnTsunami.href = annualLinks[2];
             } else {
                 // Monthly
                 prices.forEach((el, index) => {
@@ -330,10 +327,6 @@
                 document.getElementById('label-monthly').classList.remove('text-gray-600');
                 document.getElementById('label-annual').classList.add('text-gray-600');
                 document.getElementById('label-annual').classList.remove('text-gray-900');
-
-                if(btnStarter) btnStarter.href = monthlyLinks[0];
-                if(btnPro) btnPro.href = monthlyLinks[1];
-                if(btnTsunami) btnTsunami.href = monthlyLinks[2];
             }
         });
 
@@ -341,8 +334,71 @@
         window.addEventListener('pageshow', () => {
             toggle.dispatchEvent(new Event('change'));
         });
+
+        // --- SEAMLESS POPUP CHECKOUT LOGIC ---
+        async function handleCheckout(e, planTier) {
+            e.preventDefault();
+            
+            // Send strangers to login
+            if (!clientId) { 
+                window.location.href = loginEndpoint; 
+                return; 
+            }
+
+            const btnElement = e.target;
+            const originalText = btnElement.innerText;
+            btnElement.innerText = "Loading Secure Checkout...";
+            btnElement.style.opacity = "0.7";
+            btnElement.style.pointerEvents = "none";
+
+            // Determine if they chose the monthly or annual version of this tier
+            const planString = isAnnual ? `${planTier}_annual` : `${planTier}_monthly`;
+
+            try {
+                // Request Subscription ID from Python Backend
+                const response = await fetch(`${BACKEND_URL}/api/billing/checkout?client_id=${clientId}&plan=${planString}`);
+                const data = await response.json();
+                
+                if (!response.ok) throw new Error(data.detail || "Failed to generate link");
+
+                // Launch Razorpay Popup
+                const options = {
+                    "key": RAZORPAY_PUBLIC_KEY,
+                    "subscription_id": data.subscription_id,
+                    "name": "PingSurf",
+                    "description": "Premium Automation",
+                    "image": "PingSurf-Logo.png",
+                    "handler": function (response) {
+                        // ON SUCCESS: Send them back to their dashboard!
+                        window.location.href = `${BACKEND_URL}/setup.html?client_id=${clientId}`;
+                    },
+                    "modal": {
+                        "ondismiss": function(){
+                            // Reset button if they close popup
+                            btnElement.innerText = originalText;
+                            btnElement.style.opacity = "1";
+                            btnElement.style.pointerEvents = "auto";
+                        }
+                    }
+                };
+                const rzp = new Razorpay(options);
+                rzp.open();
+
+            } catch (error) {
+                alert(error.message || "Checkout service is busy. Please try again.");
+                btnElement.innerText = originalText;
+                btnElement.style.opacity = "1";
+                btnElement.style.pointerEvents = "auto";
+            }
+        }
+
+        // Attach click listeners to the buttons
+        if(btnStarter) btnStarter.addEventListener('click', (e) => handleCheckout(e, 'starter'));
+        if(btnPro) btnPro.addEventListener('click', (e) => handleCheckout(e, 'pro'));
+        if(btnTsunami) btnTsunami.addEventListener('click', (e) => handleCheckout(e, 'tsunami'));
     });
 </script>
 
 </body>
 </html>
+```eof
