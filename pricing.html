@@ -147,7 +147,7 @@
                     </li>
                 </ul>
                 
-                <a href="#" id="btn-trial" class="block w-full py-4 px-6 text-center rounded-xl text-blue-600 font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors duration-200 mt-auto">
+                <a href="#" id="btn-trial" class="block w-full py-4 px-6 text-center rounded-xl text-blue-600 font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors duration-200 mt-auto" style="text-decoration: none;">
                     Start Free Trial
                 </a>
             </div>
@@ -255,7 +255,7 @@
         const hostname = window.location.hostname;
         
         if (hostname === "localhost" || hostname === "127.0.0.1" || hostname === "") {
-            BACKEND_URL = "https://clone-mid-consent-academics.trycloudflare.com"; 
+            BACKEND_URL = "https://navigation-dressing-casio-litigation.trycloudflare.com"; 
         } else {
             BACKEND_URL = "https://app.pingsurf.com"; // TODO: Update to real Azure URL
         }
@@ -269,6 +269,7 @@
         
         const navLoginBtn = document.getElementById('nav-login-btn');
         const btnTrial = document.getElementById('btn-trial');
+        const btnTrialBottom = document.getElementById('btn-trial-bottom');
         const loginEndpoint = `${BACKEND_URL}/auth/login`;
 
         if (clientId) {
@@ -281,9 +282,14 @@
                 btnTrial.innerText = "Go to Dashboard";
                 btnTrial.href = `${BACKEND_URL}/setup.html?client_id=${clientId}`;
             }
+            if (btnTrialBottom) {
+                btnTrialBottom.innerText = "Go to Dashboard";
+                btnTrialBottom.href = `${BACKEND_URL}/setup.html?client_id=${clientId}`;
+            }
         } else {
             if (navLoginBtn) navLoginBtn.href = loginEndpoint;
             if (btnTrial) btnTrial.href = loginEndpoint;
+            if (btnTrialBottom) btnTrialBottom.href = loginEndpoint;
         }
 
         const toggle = document.getElementById('billing-toggle');
