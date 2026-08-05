@@ -980,35 +980,39 @@
     const annualPrices = ['₹3990', '₹7990', '₹11990'];
     let isAnnual = false;
 
-    toggle.addEventListener('change', (e) => {
-        if(e.target.checked) {
-            // Switch to Annual
-            prices.forEach((el, index) => {
-                el.innerText = annualPrices[index];
-                el.classList.add('opacity-50');
-                setTimeout(() => el.classList.remove('opacity-50'), 150);
-            });
-            periods.forEach(p => p.innerText = '/year');
+    if (toggle) {
+      toggle.addEventListener('change', (e) => {
+          isAnnual = e.target.checked;
 
-            document.getElementById('label-annual').classList.add('text-gray-900');
-            document.getElementById('label-annual').classList.remove('text-gray-600');
-            document.getElementById('label-monthly').classList.add('text-gray-600');
-            document.getElementById('label-monthly').classList.remove('text-gray-900');
-        } else {
-            // Switch to Monthly
-            prices.forEach((el, index) => {
-                el.innerText = monthlyPrices[index];
-                el.classList.add('opacity-50');
-                setTimeout(() => el.classList.remove('opacity-50'), 150);
-            });
-            periods.forEach(p => p.innerText = '/month');
+          if(isAnnual) {
+              // Switch to Annual
+              prices.forEach((el, index) => {
+                  el.innerText = annualPrices[index];
+                  el.classList.add('opacity-50');
+                  setTimeout(() => el.classList.remove('opacity-50'), 150);
+              });
+              periods.forEach(p => p.innerText = '/year');
 
-            document.getElementById('label-monthly').classList.add('text-gray-900');
-            document.getElementById('label-monthly').classList.remove('text-gray-600');
-            document.getElementById('label-annual').classList.add('text-gray-600');
-            document.getElementById('label-annual').classList.remove('text-gray-900');
-        }
-    });
+              document.getElementById('label-annual').classList.add('text-gray-900');
+              document.getElementById('label-annual').classList.remove('text-gray-600');
+              document.getElementById('label-monthly').classList.add('text-gray-600');
+              document.getElementById('label-monthly').classList.remove('text-gray-900');
+          } else {
+              // Switch to Monthly
+              prices.forEach((el, index) => {
+                  el.innerText = monthlyPrices[index];
+                  el.classList.add('opacity-50');
+                  setTimeout(() => el.classList.remove('opacity-50'), 150);
+              });
+              periods.forEach(p => p.innerText = '/month');
+
+              document.getElementById('label-monthly').classList.add('text-gray-900');
+              document.getElementById('label-monthly').classList.remove('text-gray-600');
+              document.getElementById('label-annual').classList.add('text-gray-600');
+              document.getElementById('label-annual').classList.remove('text-gray-900');
+          }
+      });
+    }
     window.addEventListener('pageshow', () => {
         // Force the page to update prices/links based on whatever state the checkbox is currently in
         toggle.dispatchEvent(new Event('change'));
