@@ -793,6 +793,7 @@
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"></path></svg>
                   <span class="font-medium text-sm">Secure payments powered by Razorpay</span>
               </div>
+              <p class="text-xs text-gray-400 mt-2">* Plan changes take effect immediately. Unused time on your current billing cycle is not refunded.</p>
               <p class="text-sm text-gray-500">Need a custom enterprise setup? <a href="#" class="text-blue-600 hover:underline font-medium">Contact us</a>.</p>
           </div>
 
@@ -852,6 +853,8 @@
   </div>
 </footer>
 
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <!-- JavaScript for Animations and Pricing Toggle -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -861,7 +864,7 @@
     const hostname = window.location.hostname;
     // If opening file locally (localhost, 127.0.0.1, or file:///)
     if (hostname === "localhost" || hostname === "127.0.0.1" || hostname === "") {
-        BACKEND_URL = "https://navigation-dressing-casio-litigation.trycloudflare.com"; 
+        BACKEND_URL = "https://doug-theta-suffered-lay.trycloudflare.com"; 
     } else {
         // If hosted on GitHub Pages or custom domain
         BACKEND_URL = "https://app.pingsurf.com";
@@ -958,6 +961,7 @@
     }
 
     // 4. Pricing Toggle Logic
+    const RAZORPAY_PUBLIC_KEY = "rzp_test_TI64rHDN563AIL";
     const toggle = document.getElementById('billing-toggle');
     const prices = document.querySelectorAll('.price-val');
     const periods = document.querySelectorAll('.price-period');
@@ -974,18 +978,7 @@
 
     // Annual prices
     const annualPrices = ['₹3990', '₹7990', '₹11990'];
-
-    const monthlyLinks = clientId ? [
-        `${baseUrl}?client_id=${clientId}&plan=starter_monthly`,
-        `${baseUrl}?client_id=${clientId}&plan=pro_monthly`,
-        `${baseUrl}?client_id=${clientId}&plan=tsunami_monthly`
-    ] : [ loginUrl, loginUrl, loginUrl ]; // Force login if stranger    
-
-    const annualLinks = clientId ? [
-        `${baseUrl}?client_id=${clientId}&plan=starter_annual`,
-        `${baseUrl}?client_id=${clientId}&plan=pro_annual`,
-        `${baseUrl}?client_id=${clientId}&plan=tsunami_annual`
-    ] : [ loginUrl, loginUrl, loginUrl ]; // Force login if stranger
+    let isAnnual = false;
 
     toggle.addEventListener('change', (e) => {
         if(e.target.checked) {
@@ -996,11 +989,6 @@
                 setTimeout(() => el.classList.remove('opacity-50'), 150);
             });
             periods.forEach(p => p.innerText = '/year');
-            
-            // UPDATE THE LINKS TO ANNUAL
-            if(btnStarter) btnStarter.href = annualLinks[0];
-            if(btnPro) btnPro.href = annualLinks[1];
-            if(btnTsunami) btnTsunami.href = annualLinks[2];
 
             document.getElementById('label-annual').classList.add('text-gray-900');
             document.getElementById('label-annual').classList.remove('text-gray-600');
@@ -1014,11 +1002,6 @@
                 setTimeout(() => el.classList.remove('opacity-50'), 150);
             });
             periods.forEach(p => p.innerText = '/month');
-            
-            // UPDATE THE LINKS TO MONTHLY
-            if(btnStarter) btnStarter.href = monthlyLinks[0];
-            if(btnPro) btnPro.href = monthlyLinks[1];
-            if(btnTsunami) btnTsunami.href = monthlyLinks[2];
 
             document.getElementById('label-monthly').classList.add('text-gray-900');
             document.getElementById('label-monthly').classList.remove('text-gray-600');
@@ -1030,6 +1013,66 @@
         // Force the page to update prices/links based on whatever state the checkbox is currently in
         toggle.dispatchEvent(new Event('change'));
     });
+  async function handleCheckout(e, planTier) {
+        e.preventDefault();
+        
+        // Send strangers to login
+        if (!clientId) { 
+            window.location.href = loginUrl; 
+            return; 
+        }
+
+        const btnElement = e.target;
+        const originalText = btnElement.innerText;
+        btnElement.innerText = "Loading Secure Checkout...";
+        btnElement.style.opacity = "0.7";
+        btnElement.style.pointerEvents = "none";
+
+        // Determine if they chose the monthly or annual version of this tier
+        const planString = isAnnual ? `${planTier}_annual` : `${planTier}_monthly`;
+
+        try {
+            // Request Subscription ID from Python Backend
+            const response = await fetch(`${BACKEND_URL}/api/billing/checkout?client_id=${clientId}&plan=${planString}`);
+            const data = await response.json();
+            
+            if (!response.ok) throw new Error(data.detail || "Failed to generate link");
+
+            // Launch Razorpay Popup
+            const options = {
+                "key": RAZORPAY_PUBLIC_KEY,
+                "subscription_id": data.subscription_id,
+                "name": "PingSurf",
+                "description": "Premium Automation",
+                "image": "PingSurf-Logo.png",
+                "handler": function (response) {
+                    // ON SUCCESS: Send them back to their dashboard!
+                    window.location.href = `${BACKEND_URL}/setup.html?client_id=${clientId}`;
+                },
+                "modal": {
+                    "ondismiss": function(){
+                        // Reset button if they close popup
+                        btnElement.innerText = originalText;
+                        btnElement.style.opacity = "1";
+                        btnElement.style.pointerEvents = "auto";
+                    }
+                }
+            };
+            const rzp = new Razorpay(options);
+            rzp.open();
+
+        } catch (error) {
+            alert(error.message || "Checkout service is busy. Please try again.");
+            btnElement.innerText = originalText;
+            btnElement.style.opacity = "1";
+            btnElement.style.pointerEvents = "auto";
+        }
+    }
+
+    // Attach click listeners to the buttons
+    if(btnStarter) btnStarter.addEventListener('click', (e) => handleCheckout(e, 'starter'));
+    if(btnPro) btnPro.addEventListener('click', (e) => handleCheckout(e, 'pro'));
+    if(btnTsunami) btnTsunami.addEventListener('click', (e) => handleCheckout(e, 'tsunami'));
   });
 </script>
 </body>
