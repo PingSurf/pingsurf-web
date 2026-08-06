@@ -6,7 +6,20 @@
 <title>PingSurf.com — Publish posts. Reply to messages.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Tailwind is loaded here specifically to power the pricing grid easily -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+</script>
 <style>
 
   :root{
@@ -24,7 +37,7 @@
     --radius-sm: 12px;
   }
 
-  *{ margin:0; padding:0; box-sizing:border-box; }
+  /* Reset overrides to prevent Tailwind from completely breaking custom styles */
   html{ scroll-behavior:smooth; }
 
   body{
@@ -70,7 +83,6 @@
       transition: width 0.1s ease-out;
   }
 
-  a{ color:inherit; text-decoration:none; }
   h1,h2,h3{ font-family:'Outfit', sans-serif; }
 
   .wrap{ max-width:1200px; margin:0 auto; padding:0 32px; }
@@ -94,6 +106,7 @@
     font-weight: 800; 
     font-size: 24px; 
     letter-spacing: -0.03em; 
+    text-decoration: none;
   }
   
   .logo-mark { 
@@ -102,8 +115,8 @@
     flex-shrink: 0; 
     object-fit: contain; 
     mix-blend-mode: multiply; 
-    position: relative; /* Allows for manual positional adjustments */
-    top: -2px; /* Lifts the icon up slightly for perfect optical alignment */
+    position: relative;
+    top: -2px; 
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
   }
   
@@ -116,12 +129,12 @@
     -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent; 
     line-height: 1.2; 
-    padding-bottom: 8px; /* Gives the tail of the 'g' enough room to render */
-    margin-bottom: -8px; /* Offsets the padding so the text stays perfectly centered with the icon */
+    padding-bottom: 8px; 
+    margin-bottom: -8px; 
   }
 
   .nav-links{ display:flex; gap:36px; font-size:15px; font-weight:600; color:var(--ink-muted); }
-  .nav-links a{ position: relative; transition: color 0.2s ease; }
+  .nav-links a{ position: relative; transition: color 0.2s ease; text-decoration: none;}
   .nav-links a::after {
       content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0;
       background-color: var(--brand-primary); transition: width 0.3s ease;
@@ -136,6 +149,7 @@
     background:var(--ink); color:#fff;
     transition:all .3s cubic-bezier(0.16, 1, 0.3, 1);
     border: 1px solid transparent;
+    text-decoration: none;
   }
   .nav-cta:hover{ 
     background:var(--surface); 
@@ -169,12 +183,12 @@
     border: 1px solid rgba(79, 70, 229, 0.2);
   }
 
-  h1{
+  .hero h1{
     font-size:clamp(40px, 5.5vw, 64px);
     font-weight:800; letter-spacing:-0.04em; line-height:1.05;
     color:var(--ink);
   }
-  h1 span{ 
+  .hero h1 span{ 
       background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -194,6 +208,7 @@
     box-shadow:0 10px 25px -5px rgba(24,119,242,.4);
     transition:all .3s cubic-bezier(0.34, 1.56, 0.64, 1);
     font-family:'Inter', sans-serif;
+    text-decoration: none;
   }
   .fb-btn:hover{ 
     transform:translateY(-4px) scale(1.02); 
@@ -203,7 +218,7 @@
 
   .cta-sub{ font-size:14px; color:var(--ink-faint); margin-top:16px; }
 
-  /* ---- PREMIUM Real Phone - top right + shiny ---- */
+  /* ---- PREMIUM Real Phone ---- */
   .hero-visual{
     position:relative;
     display:flex; align-items:flex-start; justify-content:flex-end;
@@ -225,7 +240,6 @@
   @keyframes blobDrift1{0%{transform:translate(0,0) rotate(0deg)}100%{transform:translate(18px,-16px) rotate(6deg)}}
   @keyframes blobDrift2{0%{transform:translate(0,0) rotate(0deg)}100%{transform:translate(-16px,14px) rotate(-5deg)}}
 
-  /* Real iPhone frame */
   .phone{
     position:relative; z-index:2;
     width:300px; height:610px;
@@ -250,7 +264,7 @@
     0%,100%{transform: translateY(0) rotateY(-6deg) rotateX(5deg) translateZ(0)}
     50%{transform: translateY(-16px) rotateY(-3deg) rotateX(3deg) translateZ(18px)}
   }
-  /* Shiny sweep on hover + auto */
+  
   .phone-frame-shine{
     position:absolute; inset:0; border-radius:56px; pointer-events:none; z-index:10; overflow:hidden;
   }
@@ -331,19 +345,6 @@
     .toast.t1{left:4%;transform:translateX(0)} .toast.t2{right:4%;transform:translateX(0)}
   }
 
-  /* ================= SECTION SCAFFOLDING ================= */
-  section{ padding:100px 0; }
-  .section-head{ max-width:660px; margin:0 auto 60px; text-align:center; }
-  .section-tag{
-    display:inline-block; font-weight:700; font-size:13px; text-transform: uppercase; letter-spacing: 0.05em;
-    color:var(--brand-primary); background:rgba(79, 70, 229, 0.1);
-    padding:8px 16px; border-radius:100px; margin-bottom:20px;
-  }
-  .section-head h2{
-    font-size:clamp(32px, 4vw, 48px); letter-spacing:-0.03em; font-weight:800; line-height:1.15;
-  }
-  .section-head p{ margin-top:18px; color:var(--ink-muted); font-size:18px; line-height:1.6; }
-
   /* ================= SCROLL REVEAL (GSAP Style) ================= */
   .reveal {
     opacity: 0;
@@ -359,77 +360,19 @@
   .delay-3 { transition-delay: 0.3s; }
   .delay-4 { transition-delay: 0.4s; }
 
-  /* ================= SOLUTIONS ================= */
-  .solutions{ display:grid; grid-template-columns:1fr 1fr; gap:32px; }
-  @media (max-width:840px){ .solutions{ grid-template-columns:1fr; } }
-
-  .card{
-    background:var(--surface-glass);
-    backdrop-filter: blur(10px);
-    border:1px solid rgba(255,255,255,0.8);
-    border-radius:var(--radius-lg);
-    padding:40px;
-    position:relative;
-    box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
-    transition:all .4s cubic-bezier(0.25, 1, 0.5, 1);
-    overflow: hidden;
-  }
-  .card::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-      background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
-      opacity: 0; transition: opacity 0.3s ease;
-  }
-  .card:hover{ 
-    transform:translateY(-8px); 
-    box-shadow:0 30px 60px -15px rgba(15, 23, 42, 0.12);
-    background: var(--surface);
-  }
-  .card:hover::before { opacity: 1; }
-
-  .card-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:28px; }
-
-  .card-icon{
-    width:60px; height:60px; border-radius:16px;
-    display:flex; align-items:center; justify-content:center;
-    flex-shrink:0;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.06);
-  }
-  .card-icon svg{ width:28px; height:28px; }
-  .card.publish .card-icon{ background:linear-gradient(135deg, var(--brand-primary), #818CF8); }
-  .card.publish .card-icon svg{ stroke:#fff; }
-  .card.reply .card-icon{ background:linear-gradient(135deg, var(--brand-secondary), #2DD4BF); }
-  .card.reply .card-icon svg{ stroke:#fff; }
-
-  .standalone-pill{
-    font-size:12px; font-weight:700; color:var(--ink-muted);
-    border:1px solid var(--line); padding:6px 12px; border-radius:100px;
-    background: #F8FAFC;
-  }
-
-  .card .kicker{
-    font-size:14px; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
-    margin-bottom:12px;
-  }
-  .card.publish .kicker{ color:var(--brand-primary); }
-  .card.reply .kicker{ color:var(--brand-secondary); }
-
-  .card h3{ font-size:28px; letter-spacing:-0.02em; margin-bottom:16px; font-weight:800; }
-  .card p{ color:var(--ink-muted); font-size:16px; line-height:1.7; margin-bottom:28px; }
-
-  .feat-list{ list-style:none; display:flex; flex-direction:column; gap:16px; }
-  .feat-list li{ font-size:15px; font-weight: 500; color:var(--ink); display:flex; align-items:flex-start; gap:12px; }
-  .feat-list .tick{
-    width:24px; height:24px; border-radius:50%; flex-shrink:0;
-    display:flex; align-items:center; justify-content:center;
-    background: rgba(79, 70, 229, 0.1);
-  }
-  .feat-list svg{ width:14px; height:14px; stroke:var(--brand-primary); stroke-width: 3; }
-
-  .solutions-note{
-    text-align:center; margin-top:32px; font-size:15px; font-weight: 500; color:var(--ink-faint);
-  }
-
   /* ================= HOW IT WORKS ================= */
+  .how-section { padding: 100px 0; }
+  .section-head{ max-width:660px; margin:0 auto 60px; text-align:center; }
+  .section-tag{
+    display:inline-block; font-weight:700; font-size:13px; text-transform: uppercase; letter-spacing: 0.05em;
+    color:var(--brand-primary); background:rgba(79, 70, 229, 0.1);
+    padding:8px 16px; border-radius:100px; margin-bottom:20px;
+  }
+  .section-head h2{
+    font-size:clamp(32px, 4vw, 48px); letter-spacing:-0.03em; font-weight:800; line-height:1.15;
+  }
+  .section-head p{ margin-top:18px; color:var(--ink-muted); font-size:18px; line-height:1.6; }
+
   .steps{ display:grid; grid-template-columns:repeat(4, 1fr); gap:24px; }
   @media (max-width:940px){ .steps{ grid-template-columns:repeat(2, 1fr); } }
   @media (max-width:560px){ .steps{ grid-template-columns:1fr; } }
@@ -458,7 +401,16 @@
   .step h3{ font-size:20px; margin-bottom:12px; letter-spacing:-0.01em; font-weight: 700; }
   .step p{ color:var(--ink-muted); font-size:15px; line-height:1.6; }
 
+
+  /* ================= PRICING OVERRIDES ================= */
+  .gradient-text {
+      background: linear-gradient(to right, #3b82f6, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+  }
+  
   /* ================= CTA BAND ================= */
+  .cta-section { padding: 0 0 100px 0; }
   .cta-band{
     border-radius:40px;
     background:linear-gradient(135deg, var(--brand-primary) 0%, #312E81 100%);
@@ -489,6 +441,7 @@
     font-size: 18px;
     padding: 18px 40px;
     box-shadow: 0 15px 30px rgba(0,0,0,0.2); 
+    display: inline-flex;
   }
   .cta-band .fb-btn svg { fill: #1877F2; width: 26px; height: 26px; }
   .cta-band .fb-btn:hover { background: #F8FAFC; transform: translateY(-4px) scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,0.25); }
@@ -500,7 +453,7 @@
   .footer-brand p{ color:var(--ink-muted); font-size:15px; margin-top:16px; max-width:300px; line-height:1.6; font-weight: 500;}
   .footer-links{ display:flex; gap:60px; flex-wrap:wrap; }
   .footer-col h4{ font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--ink); margin-bottom:20px; }
-  .footer-col a{ display:block; color:var(--ink-muted); font-size:15px; font-weight: 500; margin-bottom:12px; transition:color .2s ease; }
+  .footer-col a{ display:block; color:var(--ink-muted); font-size:15px; font-weight: 500; margin-bottom:12px; transition:color .2s ease; text-decoration: none;}
   .footer-col a:hover{ color:var(--brand-primary); }
 
   .footer-bottom{
@@ -508,7 +461,7 @@
     padding-top:32px; border-top:1px solid var(--line); font-size:14px; color:var(--ink-faint); font-weight: 500;
   }
   .footer-bottom .legal-links{ display:flex; gap:24px; }
-  .footer-bottom a{ transition: color .2s ease; }
+  .footer-bottom a{ transition: color .2s ease; text-decoration: none;}
   .footer-bottom a:hover{ color:var(--ink); }
 
 </style>
@@ -524,10 +477,10 @@
       <span class="logo-text">PingSurf</span>
     </a>
     <nav class="nav-links">
-      <a href="#solutions">Solutions</a>
       <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
     </nav>
-    <a class="nav-cta" href="#get-started">Get started</a>
+    <a class="nav-cta" href="#pricing">Get started</a>
   </div>
 </header>
 
@@ -543,12 +496,10 @@
       <p class="lead reveal fade-in delay-3">PingSurf publishes your posts and replies to comments and messages the moment they come in — so your business stays active, 24/7.</p>
 
     <div class="cta-row reveal fade-in delay-4">
-      <a href="https://app.pingsurf.com/auth/login" class="fb-btn">
-        <svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        Continue with Facebook
+      <a href="#pricing" class="fb-btn" style="background: var(--ink); color: #fff; box-shadow: none;">
+        See Pricing Plans
       </a>
     </div>
-      <p class="cta-sub reveal fade-in delay-4">Securely connects your Pages and Instagram accounts.</p>
     </div>
 
     <div class="hero-visual reveal fade-in delay-3" aria-hidden="true" id="parallax-scene">
@@ -606,52 +557,8 @@
     </div>
   </section>
 
-  <!-- ============ SOLUTIONS ============ -->
-  <section id="solutions" class="wrap">
-    <div class="section-head reveal">
-      <span class="section-tag">Powerful Automation</span>
-      <h2>Two independent apps. Use one, or both.</h2>
-      <p>PingSurf Publish and Reply work flawlessly together, but neither requires the other. Pick the tool that fits your workflow.</p>
-    </div>
-
-    <div class="solutions">
-      <article class="card publish reveal delay-1">
-        <div class="card-top">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5-5 18-4-8-9-5Z"/></svg>
-          </div>
-          <span class="standalone-pill">Independent App</span>
-        </div>
-        <div class="kicker">PingSurf Publish</div>
-        <h3>Your posts, handled.</h3>
-        <p>Send photos, offers, or updates through WhatsApp whenever you have a spare minute, and we share them straight to your social pages.</p>
-        <ul class="feat-list">
-          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Post to all your pages at once</li>
-          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>No dashboards, just WhatsApp</li>
-        </ul>
-      </article>
-
-      <article class="card reply reveal delay-2">
-        <div class="card-top">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          </div>
-          <span class="standalone-pill">Independent App</span>
-        </div>
-        <div class="kicker">PingSurf Reply</div>
-        <h3>Every message, answered.</h3>
-        <p>Customers comment and message at all hours. We answer right away, in your own words and tone, so nobody is left waiting.</p>
-        <ul class="feat-list">
-          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Instant replies to DMs & Comments</li>
-          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Sounds like you, not a robot</li>
-        </ul>
-      </article>
-    </div>
-    <p class="solutions-note reveal delay-3">Setup takes less than 3 minutes. Cancel anytime.</p>
-  </section>
-
   <!-- ============ HOW IT WORKS ============ -->
-  <section id="how" class="wrap">
+  <section id="how" class="wrap how-section">
     <div class="section-head reveal">
       <span class="section-tag">Seamless Workflow</span>
       <h2>Easy to set up. Simple to run.</h2>
@@ -661,36 +568,247 @@
     <div class="steps">
       <div class="step reveal delay-1">
         <div class="step-num">1</div>
-        <h3>Connect</h3>
+        <h3 style="font-family: 'Outfit', sans-serif;">Connect</h3>
         <p>Link your Facebook page securely in a couple of taps. Done in 60 seconds.</p>
       </div>
       <div class="step reveal delay-2">
         <div class="step-num">2</div>
-        <h3>Message</h3>
+        <h3 style="font-family: 'Outfit', sans-serif;">Message</h3>
         <p>Send photos or updates to our secure WhatsApp bot whenever you have a minute.</p>
       </div>
       <div class="step reveal delay-3">
         <div class="step-num">3</div>
-        <h3>Publish</h3>
+        <h3 style="font-family: 'Outfit', sans-serif;">Publish</h3>
         <p>PingSurf automatically formats and shares your content to your connected pages.</p>
       </div>
       <div class="step reveal delay-4">
         <div class="step-num">4</div>
-        <h3>Engage</h3>
+        <h3 style="font-family: 'Outfit', sans-serif;">Engage</h3>
         <p>We monitor incoming comments and reply instantly based on your preferences.</p>
       </div>
     </div>
   </section>
 
+  <!-- ============ PRICING SECTION ============ -->
+  <section id="pricing" class="py-16 lg:py-24 overflow-hidden relative">
+      
+      <!-- Decorative background elements -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none -z-10">
+          <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+          <div class="absolute top-0 right-1/4 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative reveal">
+          
+          <!-- Top Announcement Banner -->
+          <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-10 text-sm">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 text-blue-800 font-medium">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                  Refer a friend, get 1 month FREE (No limit on referrals!)
+              </span>
+          </div>
+
+          <div class="text-center max-w-3xl mx-auto mb-10">
+              <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6" style="font-family: 'Outfit', sans-serif;">
+                  Automate your marketing.<br />
+                  <span class="gradient-text">Grow your business.</span>
+              </h2>
+              <p class="text-xl text-gray-600">Choose the perfect wave for your business. Cancel anytime. No lock-in contracts.</p>
+          </div>
+
+          <div class="max-w-4xl mx-auto mb-10">
+              <div class="bg-gradient-to-r from-amber-100 to-orange-100 border border-amber-200 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div class="flex items-center gap-4">
+                      <div class="bg-amber-500 text-white rounded-full p-2 flex-shrink-0">
+                          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                      </div>
+                      <div>
+                          <h4 class="font-bold text-gray-900 text-lg">🎁 First 50 Paid Subscribers Bonus</h4>
+                          <p class="text-amber-800 text-sm font-medium">Upgrade to any paid plan today and get Google Business Profile integration for LIFE.</p>
+                      </div>
+                  </div>
+                  <div class="text-center sm:text-right">
+                      <span class="inline-block bg-white text-amber-700 font-bold px-3 py-1 rounded-full text-sm shadow-sm border border-amber-200">
+                          Only 14 spots left!
+                      </span>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Billing Toggle -->
+          <div class="flex justify-center items-center gap-4 mb-16">
+              <span class="text-gray-900 font-bold" id="label-monthly">Monthly</span>
+              
+              <label for="billing-toggle" class="flex items-center cursor-pointer relative">
+                  <input type="checkbox" id="billing-toggle" class="sr-only peer">
+                  <div class="w-14 h-8 bg-gray-300 rounded-full peer-checked:bg-blue-600 transition-colors duration-300"></div>
+                  <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition-transform duration-300 peer-checked:translate-x-6 shadow-sm"></div>
+              </label>
+
+              <span class="text-gray-600 font-medium" id="label-annual">Annually <span class="text-green-500 text-sm font-bold ml-1">(2 Months Free)</span></span>
+          </div>
+
+          <!-- Pricing Grid -->
+          <div class="grid lg:grid-cols-2 xl:grid-cols-4 gap-6 max-w-7xl mx-auto items-stretch">
+              
+              <!-- Tier 1: Free Trial -->
+              <div class="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 flex flex-col hover:shadow-lg transition-shadow duration-300">
+                  <h4 class="text-2xl font-bold text-gray-900 mb-2">Free Trial</h4>
+                  <p class="text-gray-500 mb-6 text-sm">Test the waters. No credit card required.</p>
+                  <div class="mb-8">
+                      <span class="text-5xl font-extrabold text-gray-900">₹0</span>
+                      <span class="text-gray-500 font-medium">/ 30 days</span>
+                  </div>
+                  
+                  <ul class="space-y-4 mb-8 flex-grow text-sm">
+                      <li class="flex items-start">
+                          <svg class="w-5 h-5 text-green-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                          <span class="text-gray-700"><strong>30</strong> Automated Posts & Stories</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="w-5 h-5 text-green-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                          <span class="text-gray-700"><strong>100</strong> AI Replies/mo</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="w-5 h-5 text-green-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                          <span class="text-gray-700">AI Caption Generation</span>
+                      </li>
+                      <li class="flex items-start opacity-50">
+                          <svg class="w-5 h-5 text-red-400 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                          <span class="text-gray-500">No Google Business Profile</span>
+                      </li>
+                  </ul>
+                  
+                  <a href="#" id="btn-trial" class="block w-full py-4 px-6 text-center rounded-xl text-blue-600 font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors duration-200 mt-auto" style="text-decoration: none;">
+                      Start Free Trial
+                  </a>
+              </div>
+
+              <!-- Tier 2: Starter -->
+              <div class="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 flex flex-col hover:shadow-lg transition-shadow duration-300">
+                  <h4 class="text-2xl font-bold text-gray-900 mb-2">Starter Wave</h4>
+                  <p class="text-gray-500 mb-6 text-sm">Perfect for businesses that just need to post consistently.</p>
+                  <div class="mb-8">
+                      <span class="text-5xl font-extrabold text-gray-900 price-val">₹399</span>
+                      <span class="text-gray-500 font-medium price-period">/month</span>
+                  </div>
+                  
+                  <ul class="space-y-4 mb-8 flex-grow text-sm">
+                      <li class="flex items-start">
+                          <svg class="w-5 h-5 text-green-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                          <span class="text-gray-700"><strong>Unlimited</strong> Posts & Stories</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="w-5 h-5 text-green-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                          <span class="text-gray-700">Post via WhatsApp</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="w-5 h-5 text-green-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                          <span class="text-gray-700">AI Caption Generation</span>
+                      </li>
+                      <li class="flex items-start opacity-50">
+                          <svg class="w-5 h-5 text-red-400 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                          <span class="text-gray-500">No AI Comment/DM Replies</span>
+                      </li>
+                  </ul>
+                  
+                  <!-- ADDED ID HERE -->
+                  <a id="btn-starter" href="#" class="block w-full py-4 px-6 text-center rounded-xl text-gray-900 font-semibold border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-colors duration-200 mt-auto" style="text-decoration: none;">
+                      Subscribe Now
+                  </a>
+              </div>
+
+              <!-- Tier 3: Pro -->
+              <div class="bg-gray-900 rounded-3xl shadow-2xl border border-gray-800 p-8 flex flex-col xl:-translate-y-4 relative overflow-hidden">
+                  <div class="absolute top-0 right-0 bg-gradient-to-r from-blue-500 to-cyan-400 text-white text-xs font-bold px-4 py-1 rounded-bl-xl uppercase tracking-wider">
+                      Most Popular
+                  </div>
+                  
+                  <h4 class="text-2xl font-bold text-white mb-2">Pro Surfer</h4>
+                  <p class="text-gray-400 mb-6 text-sm">Your 24/7 AI Marketing & Customer Service team.</p>
+                  <div class="mb-8">
+                      <span class="text-5xl font-extrabold text-white price-val">₹799</span>
+                      <span class="text-gray-400 font-medium price-period">/month</span>
+                  </div>
+                  
+                  <ul class="space-y-4 mb-8 flex-grow text-sm">
+                      <li class="flex items-start">
+                          <svg class="w-5 h-5 text-cyan-400 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                          <span class="text-gray-300"><strong>Unlimited</strong> Posts & Stories</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="w-5 h-5 text-cyan-400 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                          <span class="text-gray-300"><strong>1,000 AI Replies/mo</strong> to DMs & Comments</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="w-5 h-5 text-cyan-400 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                          <span class="text-gray-300">24/7 Facebook & Instagram Auto-Responder</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="w-5 h-5 text-cyan-400 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                          <span class="text-gray-300">Smart Comment Moderation</span>
+                      </li>
+                  </ul>
+                  
+                  <!-- ADDED ID HERE -->
+                  <a id="btn-pro" href="#" class="block w-full py-4 px-6 text-center rounded-xl text-white font-bold bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 shadow-lg hover:shadow-cyan-500/25 transition-all duration-200 mt-auto" style="text-decoration: none;">
+                      Subscribe Now
+                  </a>
+              </div>
+
+              <!-- Tier 4: Elite -->
+              <div class="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 flex flex-col hover:shadow-lg transition-shadow duration-300">
+                  <h4 class="text-2xl font-bold text-gray-900 mb-2">Tsunami</h4>
+                  <p class="text-gray-500 mb-6 text-sm">For high-volume businesses and viral creators.</p>
+                  <div class="mb-8">
+                      <span class="text-5xl font-extrabold text-gray-900 price-val">₹1199</span>
+                      <span class="text-gray-500 font-medium price-period">/month</span>
+                  </div>
+                  
+                  <ul class="space-y-4 mb-8 flex-grow text-sm">
+                      <li class="flex items-start">
+                          <svg class="w-5 h-5 text-purple-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                          <span class="text-gray-700"><strong>Unlimited</strong> Posts & Stories</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="w-5 h-5 text-purple-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                          <span class="text-gray-700"><strong>Unlimited AI Replies</strong> to DMs & Comments</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="w-5 h-5 text-purple-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                          <span class="text-gray-700">Priority AI Processing</span>
+                      </li>
+                  </ul>
+                  
+                  <!-- ADDED ID HERE -->
+                  <a id="btn-tsunami" href="#" class="block w-full py-4 px-6 text-center rounded-xl text-gray-900 font-semibold border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-colors duration-200 mt-auto" style="text-decoration: none;">
+                      Subscribe Now
+                  </a>
+              </div>
+
+          </div>
+          
+          <div class="mt-16 text-center">
+              <div class="flex items-center justify-center gap-2 text-gray-500 mb-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"></path></svg>
+                  <span class="font-medium text-sm">Secure payments powered by Razorpay</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-2">* Plan changes take effect immediately. Unused time on your current billing cycle is not refunded.</p>
+              <p class="text-sm text-gray-500">Need a custom enterprise setup? <a href="#" class="text-blue-600 hover:underline font-medium">Contact us</a>.</p>
+          </div>
+
+      </div>
+  </section>
+
   <!-- ============ CTA BAND ============ -->
-  <section class="wrap" id="get-started">
-    <div class="cta-row reveal fade-in delay-4">
-      <a href="https://app.pingsurf.com/auth/login" class="fb-btn">
-        <svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        Continue with Facebook
+  <section class="wrap cta-section" id="get-started">
+    <div class="cta-band reveal delay-1">
+      <h2>Ready to automate your marketing?</h2>
+      <p>Join the businesses already saving hours every week.</p>
+      <a id="btn-trial-bottom" href="#" class="fb-btn" style="text-decoration: none; color: var(--brand-primary);">
+        Start 30-Day Free Trial
       </a>
     </div>
-    <p class="cta-sub reveal fade-in delay-4">Securely connects your Pages and Instagram accounts.</p>
   </section>
 </main>
 
@@ -702,15 +820,14 @@
           <img class="logo-mark" src="PingSurf-Logo.png" alt="PingSurf logo" />
           <span class="logo-text">PingSurf</span>
         </div>
-        <p>Smart publishing and instant auto-replies for modern businesses.</p>
+        <p>Smart publishing and instant auto-replies for any businesses.</p>
       </div>
 
       <div class="footer-links">
         <div class="footer-col">
           <h4>Product</h4>
-          <a href="#solutions">PingSurf Publish</a>
-          <a href="#solutions">PingSurf Reply</a>
           <a href="#how">How it works</a>
+          <a href="#pricing">Pricing</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
@@ -721,7 +838,7 @@
           <h4>Legal</h4>
           <a href="privacy_policy.html">Privacy Policy</a>
           <a href="terms_of_service.html">Terms of Service</a>
-          <a href="data_deletion.html">Data Deletion</a>
+          <a href="data_deletion.html">Data Deletion</a> 
         </div>
       </div>
     </div>
@@ -737,19 +854,58 @@
   </div>
 </footer>
 
-<!-- JavaScript for Animations -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     
+    // --- AUTO-DETECT BACKEND URL ---
+    let BACKEND_URL = "";
+    const hostname = window.location.hostname;
+    if (hostname === "localhost" || hostname === "127.0.0.1" || hostname === "") {
+        BACKEND_URL = "https://proteins-prefers-appliance-blackberry.trycloudflare.com"; 
+    } else {
+        BACKEND_URL = "https://app.pingsurf.com";
+    }
+
+    // --- LOGIN & CLIENT ID MANAGER ---
+    const urlParams = new URLSearchParams(window.location.search);
+    let clientId = urlParams.get('client_id') || localStorage.getItem('pingsurf_client_id');
+    const navLoginBtn = document.getElementById('nav-login-btn');
+    const btnTrial = document.getElementById('btn-trial');
+    const btnTrialBottom = document.getElementById('btn-trial-bottom');
+    const loginEndpoint = `${BACKEND_URL}/auth/login?frontend_url=${encodeURIComponent(window.location.origin)}`;
+    
+    if (clientId) {
+        localStorage.setItem('pingsurf_client_id', clientId);
+        if (navLoginBtn) {
+            navLoginBtn.innerText = "Dashboard";
+            navLoginBtn.href = `${BACKEND_URL}/setup.html?client_id=${clientId}`;
+        }
+        if (btnTrial) {
+            btnTrial.innerText = "Go to Dashboard";
+            btnTrial.href = `${BACKEND_URL}/setup.html?client_id=${clientId}`;
+        }
+        if (btnTrialBottom) {
+            btnTrialBottom.innerText = "Go to Dashboard";
+            btnTrialBottom.href = `${BACKEND_URL}/setup.html?client_id=${clientId}`;
+        }
+    } else {
+        if (navLoginBtn) navLoginBtn.href = loginEndpoint;
+        if (btnTrial) btnTrial.href = loginEndpoint;
+        if (btnTrialBottom) btnTrialBottom.href = loginEndpoint;
+    }
+
     // 1. Scroll Progress Bar
     window.addEventListener('scroll', () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
         document.getElementById("progressBar").style.width = scrolled + "%";
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
     });
 
-    // 2. Premium Parallax - magnetic lerp + shiny
+    // 2. Premium Parallax
     const scene = document.getElementById('parallax-scene');
     const phone = document.getElementById('phone-element');
     const blobLayer = document.getElementById('blob-layer');
@@ -802,6 +958,110 @@
     } else {
         document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
     }
+
+    // 4. Pricing Toggle Logic
+    const RAZORPAY_PUBLIC_KEY = "rzp_test_TI64rHDN563AIL";
+    const toggle = document.getElementById('billing-toggle');
+    const prices = document.querySelectorAll('.price-val');
+    const periods = document.querySelectorAll('.price-period');
+    
+    const btnStarter = document.getElementById('btn-starter');
+    const btnPro = document.getElementById('btn-pro');
+    const btnTsunami = document.getElementById('btn-tsunami');
+
+    const monthlyPrices = ['₹399', '₹799', '₹1199'];
+    const annualPrices = ['₹3990', '₹7990', '₹11990'];
+    let isAnnual = false;
+
+    if (toggle) {
+      toggle.addEventListener('change', (e) => {
+          isAnnual = e.target.checked;
+
+          if(isAnnual) {
+              prices.forEach((el, index) => {
+                  el.innerText = annualPrices[index];
+                  el.classList.add('opacity-50');
+                  setTimeout(() => el.classList.remove('opacity-50'), 150);
+              });
+              periods.forEach(p => p.innerText = '/year');
+
+              document.getElementById('label-annual').classList.add('text-gray-900');
+              document.getElementById('label-annual').classList.remove('text-gray-600');
+              document.getElementById('label-monthly').classList.add('text-gray-600');
+              document.getElementById('label-monthly').classList.remove('text-gray-900');
+          } else {
+              prices.forEach((el, index) => {
+                  el.innerText = monthlyPrices[index];
+                  el.classList.add('opacity-50');
+                  setTimeout(() => el.classList.remove('opacity-50'), 150);
+              });
+              periods.forEach(p => p.innerText = '/month');
+
+              document.getElementById('label-monthly').classList.add('text-gray-900');
+              document.getElementById('label-monthly').classList.remove('text-gray-600');
+              document.getElementById('label-annual').classList.add('text-gray-600');
+              document.getElementById('label-annual').classList.remove('text-gray-900');
+          }
+      });
+      window.addEventListener('pageshow', () => {
+          toggle.dispatchEvent(new Event('change'));
+      });
+    }
+
+    async function handleCheckout(e, planTier) {
+        e.preventDefault();
+        
+        if (!clientId) { 
+            window.location.href = loginEndpoint; 
+            return; 
+        }
+
+        // Use e.currentTarget to reliably target the <a> element even if user clicks inner elements/svgs
+        const btnElement = e.currentTarget;
+        const originalText = btnElement.innerText;
+        btnElement.innerText = "Loading Secure Checkout...";
+        btnElement.style.opacity = "0.7";
+        btnElement.style.pointerEvents = "none";
+
+        const planString = isAnnual ? `${planTier}_annual` : `${planTier}_monthly`;
+
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/billing/checkout?client_id=${clientId}&plan=${planString}`);
+            const data = await response.json();
+            
+            if (!response.ok) throw new Error(data.detail || "Failed to generate link");
+
+            const options = {
+                "key": RAZORPAY_PUBLIC_KEY,
+                "subscription_id": data.subscription_id,
+                "name": "PingSurf",
+                "description": "Premium Automation",
+                "image": "PingSurf-Logo.png",
+                "handler": function (response) {
+                    window.location.href = `${BACKEND_URL}/setup.html?client_id=${clientId}`;
+                },
+                "modal": {
+                    "ondismiss": function(){
+                        btnElement.innerText = originalText;
+                        btnElement.style.opacity = "1";
+                        btnElement.style.pointerEvents = "auto";
+                    }
+                }
+            };
+            const rzp = new Razorpay(options);
+            rzp.open();
+
+        } catch (error) {
+            alert(error.message || "Checkout service is busy. Please try again.");
+            btnElement.innerText = originalText;
+            btnElement.style.opacity = "1";
+            btnElement.style.pointerEvents = "auto";
+        }
+    }
+
+    if(btnStarter) btnStarter.addEventListener('click', (e) => handleCheckout(e, 'starter'));
+    if(btnPro) btnPro.addEventListener('click', (e) => handleCheckout(e, 'pro'));
+    if(btnTsunami) btnTsunami.addEventListener('click', (e) => handleCheckout(e, 'tsunami'));
   });
 </script>
 </body>
