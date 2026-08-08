@@ -19,59 +19,22 @@
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
   body{ background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif; line-height:1.65; }
-  h1,h2{ font-family:'Outfit',sans-serif; }
+  h1,h2,h3{ font-family:'Outfit',sans-serif; }
   a{ color:var(--brand-primary); text-decoration:underline; text-underline-offset:2px; }
   .wrap{ max-width:740px; margin:0 auto; padding:0 32px; }
   header{ border-bottom:1px solid var(--line); background:rgba(255,255,255,0.9); backdrop-filter: blur(10px); }
   .nav{ display:flex; align-items:center; justify-content:space-between; height:78px; }
-  
-  .logo { 
-    display: flex; 
-    align-items: center; 
-    gap: 6px; 
-    font-weight: 800; 
-    font-size: 24px; 
-    letter-spacing: -0.03em; 
-    text-decoration: none; 
-  }
-  
-  .logo-mark { 
-    width: 44px; 
-    height: 44px; 
-    flex-shrink: 0; 
-    object-fit: contain; 
-    mix-blend-mode: multiply; 
-    position: relative; 
-    top: -2px; 
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
-  }
-  
-  .logo:hover .logo-mark { 
-    transform: rotate(-10deg) scale(1.1); 
-  }
-  
-  .logo-text { 
-    background: linear-gradient(135deg, var(--ink) 0%, var(--brand-primary) 100%); 
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent; 
-    line-height: 1.2; 
-    padding-bottom: 8px; 
-    margin-bottom: -8px; 
-  }
-
-  .logo small { 
-    font-weight: 600; 
-    font-size: 14px; 
-    color: var(--brand-secondary); 
-    margin-left: 2px; 
-    -webkit-text-fill-color: var(--brand-secondary);
-  }
+  .logo { display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 24px; letter-spacing: -0.03em; text-decoration: none; }
+  .logo-mark { width: 44px; height: 44px; flex-shrink: 0; object-fit: contain; mix-blend-mode: multiply; position: relative; top: -2px; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .logo:hover .logo-mark { transform: rotate(-10deg) scale(1.1); }
+  .logo-text { background: linear-gradient(135deg, var(--ink) 0%, var(--brand-primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.2; padding-bottom: 8px; margin-bottom: -8px; }
   .back{ font-size:14px; font-weight:600; color:var(--ink-muted); text-decoration:none; }
   .back:hover{ color:var(--brand-primary); }
   main{ padding:64px 0 96px; }
   .tag{ display:inline-block; font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:0.05em; color:var(--brand-primary); background:rgba(79, 70, 229, 0.1); padding:6px 14px; border-radius:100px; }
   h1{ font-size:clamp(30px,4vw,42px); letter-spacing:-0.03em; margin:18px 0 8px; font-weight:800; }
   h2{ font-size:20px; margin:36px 0 12px; letter-spacing:-0.01em; font-weight:700; }
+  h3{ font-size:16px; margin:24px 0 8px; font-weight:700; }
   p, li{ color:var(--ink-muted); font-size:15.5px; }
   ul, ol{ margin:12px 0 0 20px; }
   li{ margin-bottom:8px; }
@@ -79,10 +42,16 @@
   .card{ background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:16px 40px 40px; margin-top:20px; box-shadow: 0 4px 20px rgba(0,0,0,0.03);}
   .alert-box { background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 12px; padding: 16px; margin-top: 24px; }
   .alert-box p { color: #b91c1c; margin-bottom: 0; font-weight: 500; font-size: 14px;}
+  .info-box { background: rgba(79,70,229,0.05); border: 1px solid rgba(79,70,229,0.15); border-radius: 12px; padding: 16px; margin-top: 16px; }
+  .info-box p { color: var(--ink-muted); margin-bottom: 0; font-size: 14px;}
+  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px; }
+  .pill{ background: #F8FAFC; border:1px solid var(--line); border-radius:10px; padding:10px 12px; font-size:13px; color:var(--ink-muted); }
+  .pill strong{ color:var(--ink); font-size:13px; display:block; margin-bottom:2px;}
   footer{ padding:40px 0; border-top:1px solid var(--line); background:#fff;}
   footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:14px; font-weight:500; color:var(--ink-faint); }
   footer a{ color:var(--ink-faint); text-decoration: none; margin-left: 20px;}
   footer a:hover { color: var(--ink); }
+  @media(max-width:640px){ .grid{grid-template-columns:1fr} .card{padding:16px 20px 28px} }
 </style>
 </head>
 <body>
@@ -101,33 +70,67 @@
   <span class="tag">Privacy & Security</span>
   <h1>Data Deletion Instructions</h1>
   
-  <p>PingSurf respects your right to data privacy. If you wish to revoke our app's access to your Meta (Facebook/Instagram) accounts and permanently delete your data from our servers, you can do so easily by following the steps below.</p>
+  <p>PingSurf respects your right to data privacy and gives you full control over your data. You can permanently delete your business data from our servers at any time directly from the app.</p>
 
   <div class="card">
-  <h2>Option 1: Remove via Facebook (Automated Deletion)</h2>
-  <p>Because PingSurf uses Facebook Login, you can completely revoke our access directly from your Facebook settings. When you do this, Meta notifies our servers, and we immediately and permanently delete your account, cached messages, and posting history.</p>
-  
+  <h2>Option 1: Delete Inside PingSurf App (Recommended)</h2>
+  <p>This is the fastest way and immediately stops all automation.</p>
   <ol>
-    <li>Go to your Facebook account and navigate to <strong>Settings & Privacy > Settings</strong>.</li>
-    <li>In the left-hand menu, scroll down and click on <strong>Apps and Websites</strong>.</li>
-    <li>Look for <strong>PingSurf</strong> in the list of active apps and click <strong>Remove</strong>.</li>
-    <li>Confirm your choice by clicking the <strong>Remove</strong> button in the popup dialogue.</li>
+    <li>Go to <strong>app.pingsurf.com/setup.html?client_id=YOUR_ID </strong>(starts with cl_) or open PingSurf from your bookmarks. You may need to log in to Facebook.</li>
+    <li>Scroll down to <strong>Danger Zone</strong>.</li>
+    <li>Click <strong>Unsubscribe & Delete Account</strong> and confirm <strong>Yes, Delete Everything</strong>.</li>
   </ol>
 
-  <div class="alert-box">
-    <p><strong>Note:</strong> Once you complete these steps, PingSurf will immediately lose access to your pages. Automated publishing and auto-replies will stop working instantly, and your data will be purged from our databases.</p>
+  <h3>What happens instantly:</h3>
+  <ul>
+    <li>Your Razorpay subscription is cancelled automatically.</li>
+    <li>All webhooks are unsubscribed and AI reply / publishing stops immediately.</li>
+    <li>We permanently wipe your business data from our databases.</li>
+    <li>Webhook payloads stored temporarily for deduplication cache are deleted immediately after a post is published.</li>
+  </ul>
+
+  <div class="grid">
+    <div class="pill"><strong>🗑️ Deleted Forever</strong> page_access_token, user_access_token, admin_whatsapp_number, knowledge files, RAG embeddings, posts_used, ai_replies_used, plan, razorpay ids, page_name, ig_username, created_at, last_login</div>
+    <div class="pill"><strong>🧹 Also Deleted</strong> All documents in <code>client_knowledge</code> collection (your uploaded knowledge base, chunks, embeddings). No recovery possible.</div>
   </div>
 
-  <h2>Option 2: Request Manual Deletion</h2>
-  <p>If you prefer that we manually process your data deletion, or if you want to confirm that all records have been securely removed, you can submit a manual request.</p>
-  
+  <div class="info-box">
+    <p><strong>Webhook Dedup Cache Policy:</strong> Webhook data is stored strictly as a temporary deduplication cache. Aside from being deleted immediately upon post publication, any remaining webhook cache data is automatically purged daily at 12:00 AM IST.</p>
+  </div>
+
+  <h3>What we retain and why:</h3>
+  <p>To prevent free-trial abuse and to comply with Meta's requirement to identify returning users, we retain <strong>only 4 identity fields</strong> in a locked, inactive state:</p>
   <ul>
-    <li>Send an email to <strong>legal@pingsurf.com</strong> from the email address associated with your Facebook account.</li>
-    <li>Include "Data Deletion Request" in the subject line.</li>
-    <li>Please provide the exact name of the Facebook Page(s) you connected to PingSurf.</li>
+    <li><code>client_id</code></li>
+    <li><code>facebook_page_id / page_id</code></li>
+    <li><code>facebook_user_id / fb_user_id</code></li>
+    <li><code>instagram_business_account_id / ig_id</code></li>
   </ul>
-  
-  <p>Our privacy team will manually purge all remaining data associated with your account and reply with a confirmation email within 7 business days.</p>
+  <div class="info-box">
+    <p><strong>Why retain?</strong> We set <code>is_active=False, is_banned=True</code> so you cannot claim a new free trial with the same Page. This is a legitimate fraud-prevention interest under GDPR Art. 6(1)(f). All tokens and content are gone. If you want even these 4 fields erased, use Option 3 below for full erasure.</p>
+  </div>
+
+  <div class="alert-box">
+    <p><strong>Note:</strong> Once you confirm, this action cannot be undone. You will have to set everything up from scratch if you return.</p>
+  </div>
+
+  <h2>Option 2: Remove via Facebook — Apps and Websites</h2>
+  <p>If you remove PingSurf from Facebook directly, Meta sends us a <code>deauthorization callback</code>. We handle it the same as Option 1 — full wipe except the 4 identity fields.</p>
+  <ol>
+    <li>Go to Facebook: <strong>Settings & Privacy > Settings > Apps and Websites</strong>.</li>
+    <li>Find <strong>PingSurf</strong> and click <strong>Remove</strong>.</li>
+    <li>Confirm removal.</li>
+  </ol>
+  <p>Automated publishing and auto-replies stop instantly. Our endpoint <code>/data-deletion-callback</code> deletes your data and returns a confirmation ID as required by Meta.</p>
+
+  <h2>Option 3: Request Complete Erasure (Including Identity Fields)</h2>
+  <p>If you want us to delete even the 4 retained identity fields (full GDPR erasure), email us:</p>
+  <ul>
+    <li>Send an email to <strong>legal@pingsurf.com</strong> from the email linked to your Facebook Page.</li>
+    <li>Subject: <strong>Full Data Deletion Request - [Your Page ID/ Whatsapp Phone Number]</strong></li>
+    <li>Body: Include your <code>whatsapp_number</code> and Page name/ Page ID.</li>
+  </ul>
+  <p>We will manually purge the remaining document from <code>subscriptions</code> and confirm within 7 business days. After full erasure, you will be eligible for a new free trial.</p>
   </div>
 </main>
 

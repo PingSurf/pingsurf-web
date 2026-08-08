@@ -108,6 +108,7 @@
   <p>When you connect an account, we collect the information needed to operate the app or apps you choose to use, including:</p>
   <ul>
     <li>ID and Name of connected Account and Page, IDs and text of comments and messages of connected Accounts and Pages in order to provide the auto-reply functionality.</li>
+    <li> Access Tokens for connected accounts</li>
     <li>Content you send us to publish through WhatsApp</li>
     <li>Comments and direct messages your connected accounts receive, so we can generate replies and login times</li>
   </ul>
@@ -116,18 +117,18 @@
   <p>We use collected information to publish your content, generate and send automatic replies according to the rules you set, maintain your account, and improve the reliability of the service. We do not sell, rent, or monetize any of your personal information or Meta user data to third parties.</p>
 
   <h2>Facebook data</h2>
-  <p>Access granted through "Continue with Facebook" is used only for the apps you've chosen to connect — publishing content, monitoring comments and messages, or both. You can revoke this access at any time from your Facebook settings or from within PingSurf.</p>
+  <p>Access granted through Signing In to Facebook and Instagram Accounts is used only for the apps you've chosen to connect — publishing content, monitoring comments and messages, or both. You can revoke this access at any time from your Facebook settings or from within PingSurf.</p>
 
   <h2>Data retention and minimization</h2>
   <p>We adhere to strict data minimization practices to protect your information and comply with platform policies:</p>
   <ul>
-    <li><strong>Messages & Comments:</strong> To maintain conversation context, incoming messages and comments are temporarily cached in memory and permanently deleted within 5 minutes of processing.</li>
-    <li><strong>Published Content:</strong> Posts published through PingSurf are retained for a rolling 30-day period while your account is active.</li>
-    <li><strong>Account Deactivation:</strong> Upon disconnecting your account or revoking PingSurf's access, all associated content, cached messages, and publishing data are immediately and permanently deleted from our servers.</li>
+    <li><strong>Messages & Comments:</strong> We process in real-time only to provide auto-replies. No permanent storage. Temporary dedup cache is deleted immediately after a post is successfully published and during daily cleanup at 12 AM IST.</li>
+    <li><strong>Published Content:</strong> Not retained long-term. Only temporary record to prevent duplicates, deleted immediately after successful publish and at 12 AM IST daily.</li>
+    <li><strong>Account Deactivation:</strong> Upon disconnect/revoke, all content, cached messages, and publishing data are immediately and permanently deleted. Any leftover cache cleared at 12 AM IST daily.</li>
   </ul>
 
   <h2>Your choices</h2>
-  <p>You can disconnect either app independently, edit or turn off auto-reply rules, and request an export or deletion of your data by contacting us.</p>
+  <p>You can disconnect apps, edit or turn off auto-reply rules, and request an export or deletion of your data by contacting us.</p>
 
   <h2>Contact</h2>
   <p>Questions about this policy can be sent to legal@pingsurf.com.</p>
