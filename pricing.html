@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PingSurf | Pricing</title>
+    <title>PingSurf | Pricing & Add-ons</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
         .gradient-text {
             background: linear-gradient(to right, #3b82f6, #06b6d4);
             -webkit-background-clip: text;
@@ -60,7 +61,6 @@
 
             <div class="flex items-center gap-6 text-sm font-medium">
                 <a href="index.html" class="text-gray-500 hover:text-gray-900 transition">Home</a>
-                <!-- We will use JS to change this to "Dashboard" if they are logged in -->
                 <a href="#" id="nav-login-btn" class="text-blue-600">Login</a>
             </div>
         </div>
@@ -121,7 +121,8 @@
             <span class="text-gray-600 font-medium" id="label-annual">Annually <span class="text-green-500 text-sm font-bold ml-1">(2 Months Free)</span></span>
         </div>
 
-        <div class="grid lg:grid-cols-2 xl:grid-cols-4 gap-6 max-w-7xl mx-auto items-stretch">
+        <!-- Pricing Grid -->
+        <div class="grid lg:grid-cols-2 xl:grid-cols-4 gap-6 max-w-7xl mx-auto items-stretch mb-12">
             
             <!-- Tier 1: Free Trial -->
             <div class="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 flex flex-col hover:shadow-lg transition-shadow duration-300">
@@ -172,7 +173,7 @@
                     </li>
                 </ul>
                 
-                <button id="btn-starter" class="block w-full py-4 px-6 text-center rounded-xl text-gray-900 font-semibold border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-colors duration-200 mt-auto">
+                <button id="btn-starter" class="block w-full py-4 px-6 text-center rounded-xl text-gray-900 font-semibold border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-colors duration-200 mt-auto cursor-pointer">
                     Subscribe Now
                 </button>
             </div>
@@ -201,7 +202,7 @@
                     </li>
                 </ul>
                 
-                <button id="btn-pro" class="block w-full py-4 px-6 text-center rounded-xl text-white font-bold bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 shadow-lg hover:shadow-cyan-500/25 transition-all duration-200 mt-auto">
+                <button id="btn-pro" class="block w-full py-4 px-6 text-center rounded-xl text-white font-bold bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 shadow-lg hover:shadow-cyan-500/25 transition-all duration-200 mt-auto cursor-pointer">
                     Subscribe Now
                 </button>
             </div>
@@ -226,11 +227,28 @@
                     </li>
                 </ul>
                 
-                <button id="btn-tsunami" class="block w-full py-4 px-6 text-center rounded-xl text-gray-900 font-semibold border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-colors duration-200 mt-auto">
+                <button id="btn-tsunami" class="block w-full py-4 px-6 text-center rounded-xl text-gray-900 font-semibold border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-colors duration-200 mt-auto cursor-pointer">
                     Subscribe Now
                 </button>
             </div>
 
+        </div>
+
+        <!-- ============================================== -->
+        <!-- GOOGLE BUSINESS PROFILE ADD-ON CARD           -->
+        <!-- ============================================== -->
+        <div class="max-w-xl mx-auto bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl border border-blue-200 p-8 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="text-center sm:text-left">
+                <span class="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Optional Add-on</span>
+                <h4 class="text-xl font-bold text-gray-900 mb-1">Google Business Profile Add-on</h4>
+                <p class="text-gray-600 text-sm">Automatically publish your WhatsApp updates to Google Search and Google Maps.</p>
+            </div>
+            <div class="flex flex-col items-center sm:items-end flex-shrink-0">
+                <div class="text-2xl font-extrabold text-gray-900 mb-3">₹999<span class="text-xs font-medium text-gray-500">/month</span></div>
+                <button id="btn-gbp-addon" class="py-3 px-6 text-center rounded-xl text-white font-bold bg-blue-600 hover:bg-blue-700 shadow-md transition-all duration-200 cursor-pointer text-sm whitespace-nowrap">
+                    Add GBP Integration
+                </button>
+            </div>
         </div>
         
         <div class="mt-16 text-center">
@@ -239,17 +257,16 @@
                 <span class="font-medium text-sm">Secure payments powered by Razorpay</span>
             </div>
             <p class="text-xs text-gray-400 mt-2">* Plan changes take effect immediately. Unused time on your current billing cycle is not refunded.</p>
-            <p class="text-sm text-gray-500">Need a custom enterprise setup? <a href="#" class="text-blue-600 hover:underline font-medium">Contact us</a>.</p>
         </div>
 
     </div>
 </section>
 
-<!-- 🛑 RAZORPAY SCRIPT HERE 🛑 -->
+<!-- RAZORPAY SCRIPT -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", async function() {
         
         // --- AUTO-DETECT BACKEND URL ---
         let BACKEND_URL = "";
@@ -258,11 +275,20 @@
         if (hostname === "localhost" || hostname === "127.0.0.1" || hostname === "") {
             BACKEND_URL = "https://app-local.pingsurf.com";
         } else {
-            BACKEND_URL = "https://app.pingsurf.com"; // TODO: Update to real Azure URL
+            BACKEND_URL = "https://app.pingsurf.com";
         }
 
-        // 🛑 PASTE YOUR PUBLIC RAZORPAY TEST KEY HERE 🛑
-        const RAZORPAY_PUBLIC_KEY = "rzp_test_TI64rHDN563AIL";
+        // --- DYNAMIC RAZORPAY PUBLIC KEY LOADER ---
+        let RAZORPAY_PUBLIC_KEY = "";
+        try {
+            const configRes = await fetch(`${BACKEND_URL}/api/config/public`);
+            if (configRes.ok) {
+                const configData = await configRes.json();
+                RAZORPAY_PUBLIC_KEY = configData.razorpay_key_id;
+            }
+        } catch (err) {
+            console.error("Failed to fetch public config:", err);
+        }
 
         // --- CLIENT ID MANAGER ---
         const urlParams = new URLSearchParams(window.location.search);
@@ -270,7 +296,6 @@
         
         const navLoginBtn = document.getElementById('nav-login-btn');
         const btnTrial = document.getElementById('btn-trial');
-        const btnTrialBottom = document.getElementById('btn-trial-bottom');
         const loginEndpoint = `${BACKEND_URL}/auth/login`;
 
         if (clientId) {
@@ -283,105 +308,90 @@
                 btnTrial.innerText = "Go to Dashboard";
                 btnTrial.href = `${BACKEND_URL}/setup.html?client_id=${clientId}`;
             }
-            if (btnTrialBottom) {
-                btnTrialBottom.innerText = "Go to Dashboard";
-                btnTrialBottom.href = `${BACKEND_URL}/setup.html?client_id=${clientId}`;
-            }
         } else {
             if (navLoginBtn) navLoginBtn.href = loginEndpoint;
             if (btnTrial) btnTrial.href = loginEndpoint;
-            if (btnTrialBottom) btnTrialBottom.href = loginEndpoint;
         }
 
         const toggle = document.getElementById('billing-toggle');
         const prices = document.querySelectorAll('.price-val');
         const periods = document.querySelectorAll('.price-period');
         
-        // Buttons
         const btnStarter = document.getElementById('btn-starter');
         const btnPro = document.getElementById('btn-pro');
         const btnTsunami = document.getElementById('btn-tsunami');
+        const btnGbpAddon = document.getElementById('btn-gbp-addon');
 
-        // Monthly Prices
         const monthlyPrices = ['₹399', '₹799', '₹1199'];
-        // Annual Prices (2 Months Free)
         const annualPrices = ['₹3990', '₹7990', '₹11990'];
         let isAnnual = false;
 
-        toggle.addEventListener('change', (e) => {
-            isAnnual = e.target.checked;
-            if(isAnnual) {
-                // Annual
-                prices.forEach((el, index) => {
-                    el.innerText = annualPrices[index];
-                    el.classList.add('opacity-50');
-                    setTimeout(() => el.classList.remove('opacity-50'), 150);
-                });
-                periods.forEach(p => p.innerText = '/year');
-                document.getElementById('label-annual').classList.add('text-gray-900');
-                document.getElementById('label-annual').classList.remove('text-gray-600');
-                document.getElementById('label-monthly').classList.add('text-gray-600');
-                document.getElementById('label-monthly').classList.remove('text-gray-900');
-            } else {
-                // Monthly
-                prices.forEach((el, index) => {
-                    el.innerText = monthlyPrices[index];
-                    el.classList.add('opacity-50');
-                    setTimeout(() => el.classList.remove('opacity-50'), 150);
-                });
-                periods.forEach(p => p.innerText = '/month');
-                document.getElementById('label-monthly').classList.add('text-gray-900');
-                document.getElementById('label-monthly').classList.remove('text-gray-600');
-                document.getElementById('label-annual').classList.add('text-gray-600');
-                document.getElementById('label-annual').classList.remove('text-gray-900');
-            }
-        });
+        if (toggle) {
+            toggle.addEventListener('change', (e) => {
+                isAnnual = e.target.checked;
+                if(isAnnual) {
+                    prices.forEach((el, index) => {
+                        el.innerText = annualPrices[index];
+                        el.classList.add('opacity-50');
+                        setTimeout(() => el.classList.remove('opacity-50'), 150);
+                    });
+                    periods.forEach(p => p.innerText = '/year');
+                    document.getElementById('label-annual').classList.add('text-gray-900');
+                    document.getElementById('label-annual').classList.remove('text-gray-600');
+                    document.getElementById('label-monthly').classList.add('text-gray-600');
+                    document.getElementById('label-monthly').classList.remove('text-gray-900');
+                } else {
+                    prices.forEach((el, index) => {
+                        el.innerText = monthlyPrices[index];
+                        el.classList.add('opacity-50');
+                        setTimeout(() => el.classList.remove('opacity-50'), 150);
+                    });
+                    periods.forEach(p => p.innerText = '/month');
+                    document.getElementById('label-monthly').classList.add('text-gray-900');
+                    document.getElementById('label-monthly').classList.remove('text-gray-600');
+                    document.getElementById('label-annual').classList.add('text-gray-600');
+                    document.getElementById('label-annual').classList.remove('text-gray-900');
+                }
+            });
 
-        // Initialize state on load
-        window.addEventListener('pageshow', () => {
-            toggle.dispatchEvent(new Event('change'));
-        });
+            window.addEventListener('pageshow', () => {
+                toggle.dispatchEvent(new Event('change'));
+            });
+        }
 
         // --- SEAMLESS POPUP CHECKOUT LOGIC ---
-        async function handleCheckout(e, planTier) {
+        async function handleCheckout(e, planString) {
             e.preventDefault();
             
-            // Send strangers to login
+            // Require login / client_id before allowing purchase
             if (!clientId) { 
                 window.location.href = loginEndpoint; 
                 return; 
             }
 
-            const btnElement = e.target;
+            const btnElement = e.currentTarget;
             const originalText = btnElement.innerText;
             btnElement.innerText = "Loading Secure Checkout...";
             btnElement.style.opacity = "0.7";
             btnElement.style.pointerEvents = "none";
 
-            // Determine if they chose the monthly or annual version of this tier
-            const planString = isAnnual ? `${planTier}_annual` : `${planTier}_monthly`;
-
             try {
-                // Request Subscription ID from Python Backend
                 const response = await fetch(`${BACKEND_URL}/api/billing/checkout?client_id=${clientId}&plan=${planString}`);
                 const data = await response.json();
                 
                 if (!response.ok) throw new Error(data.detail || "Failed to generate link");
 
-                // Launch Razorpay Popup
                 const options = {
                     "key": RAZORPAY_PUBLIC_KEY,
                     "subscription_id": data.subscription_id,
                     "name": "PingSurf",
-                    "description": "Premium Automation",
+                    "description": planString === 'gbp_addon' ? "Google Business Profile Add-on" : "Premium Automation",
                     "image": "PingSurf-Logo.png",
                     "handler": function (response) {
-                        // ON SUCCESS: Send them back to their dashboard!
                         window.location.href = `${BACKEND_URL}/setup.html?client_id=${clientId}`;
                     },
                     "modal": {
                         "ondismiss": function(){
-                            // Reset button if they close popup
                             btnElement.innerText = originalText;
                             btnElement.style.opacity = "1";
                             btnElement.style.pointerEvents = "auto";
@@ -399,13 +409,12 @@
             }
         }
 
-        // Attach click listeners to the buttons
-        if(btnStarter) btnStarter.addEventListener('click', (e) => handleCheckout(e, 'starter'));
-        if(btnPro) btnPro.addEventListener('click', (e) => handleCheckout(e, 'pro'));
-        if(btnTsunami) btnTsunami.addEventListener('click', (e) => handleCheckout(e, 'tsunami'));
+        if(btnStarter) btnStarter.addEventListener('click', (e) => handleCheckout(e, isAnnual ? 'starter_annual' : 'starter_monthly'));
+        if(btnPro) btnPro.addEventListener('click', (e) => handleCheckout(e, isAnnual ? 'pro_annual' : 'pro_monthly'));
+        if(btnTsunami) btnTsunami.addEventListener('click', (e) => handleCheckout(e, isAnnual ? 'tsunami_annual' : 'tsunami_monthly'));
+        if(btnGbpAddon) btnGbpAddon.addEventListener('click', (e) => handleCheckout(e, 'gbp_addon'));
     });
 </script>
 
 </body>
 </html>
-```eof
